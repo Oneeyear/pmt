@@ -1,10 +1,10 @@
 package com.yl.pmt.controller;
 
-import com.yl.pmt.pojo.po.DemoPo;
-import com.yl.pmt.pojo.vo.DemoVo;
+import com.yl.pmt.pojo.po.DemandPo;
+import com.yl.pmt.pojo.vo.DemandVo;
 import com.yl.pmt.result.BaseResponse;
 import com.yl.pmt.result.ResponseData;
-import com.yl.pmt.service.IDemoService;
+import com.yl.pmt.service.IDemandService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,36 +20,36 @@ import java.util.List;
  * @author pch
  * @date 2021/9/14 6:35 下午
  */
-@Api(tags = "demo_controller")
+@Api(tags = "需求列表操作")
 @RestController
-@RequestMapping("/user")
-public class DemoController extends BaseResponse {
+@RequestMapping("/demand")
+public class DemandController extends BaseResponse {
 
 	@Autowired
-	IDemoService demoService;
+	IDemandService demandService;
 
 	/**
-	 * 查询用户列表
+	 * 查询需求列表
 	 *
 	 * @return
 	 */
-	@ApiOperation(value = "获取用户列表", notes = "获取用户列表")
+	@ApiOperation(value = "查询需求列表", notes = "查询需求列表")
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ResponseData listUserInfos() {
-		List<DemoPo> demoPos = demoService.list();
-		return success("查询成功！", demoPos);
+	public ResponseData listDemands() {
+		List<DemandPo> pos = demandService.list();
+		return success("查询成功！", pos);
 	}
 
 	/**
-	 * 根据ID查询用户姓名
+	 * 根据ID查询需求
 	 *
 	 * @return
 	 */
 	@ApiOperation(value = "根据ID查询用户姓名", notes = "根据ID查询用户姓名")
-	@RequestMapping(value = "/name", method = RequestMethod.GET)
-	public ResponseData getUserName(Integer id) {
-		String name = demoService.getName(id);
-		return success("查询成功！", name);
+	@RequestMapping(value = "/get", method = RequestMethod.GET)
+	public ResponseData getDemandByName(String name) {
+		List<DemandPo> list = demandService.getDemandByName(name);
+		return success("查询成功！", list);
 	}
 
 	/**
@@ -59,8 +59,8 @@ public class DemoController extends BaseResponse {
 	 */
 	@ApiOperation(value = "新增用户", notes = "新增用户")
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public ResponseData getUserName(DemoVo vo) {
-		demoService.addUser(vo);
+	public ResponseData addDemand(DemandVo vo) {
+		demandService.addDemand(vo);
 		return success("新增成功！");
 	}
 

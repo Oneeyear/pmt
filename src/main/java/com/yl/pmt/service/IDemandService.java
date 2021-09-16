@@ -1,10 +1,12 @@
 package com.yl.pmt.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.yl.pmt.pojo.dto.DemandDto;
+import com.yl.pmt.pojo.dto.DemandQueryDto;
 import com.yl.pmt.pojo.po.DemandPo;
-import com.yl.pmt.pojo.vo.DemandVo;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 需求
@@ -15,18 +17,24 @@ import java.util.List;
 public interface IDemandService extends IService<DemandPo> {
 
 	/**
-	 * 根据姓名查询需求
-	 *
-	 * @param name
-	 * @return
-	 */
-	List<DemandPo> getDemandByName(String name);
-
-	/**
 	 * 新增需求
 	 *
-	 * @param vo
+	 * @param dto
 	 */
-	void addDemand(DemandVo vo);
+	void addDemand(DemandDto dto);
 
+	/**
+	 * 删除需求
+	 *
+	 * @param ids
+	 */
+	void delDemands(String ids);
+
+	/**
+	 * 查询需求
+	 *
+	 * @param dto
+	 * @return
+	 */
+	List<Map<String, Object>> listDemands(DemandQueryDto dto);
 }

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yl.pmt.mapper.UserMapper">
+    <update id="removeUsers">
+        update user
+        set modify_time = now(),
+        status = 'N',
+        logic_state = 'N'
+        where id in
+        <foreach item='id' index='index' collection='list' open='(' separator=',' close=')'>
+            #{id}
+        </foreach>
+    </update>
+
+    <select id="selectUserList" resultType="com.yl.pmt.pojo.po.UserPo">
+        select id as id,
+        name as name,
+        dept as dept,
+        area as area,
+        remark as remark,
+        status as status,
+        logic_state as logicState,
+        create_user as createUser,
+        create_time as createTime,
+        modify_user as modifyUser,
+        modify_time as modifyTime
+        from user
+        where logic_state = 'Y'
+        and status = 'Y'
+        <if test="userId != null and userId != ''">
+            and id = #{userId}
+        </if>
+        <if test="dept != null and dept != ''">
+            and dept = #{dept}
+        </if>
+        <if test="area != null and area != ''">
+            and area = #{area}
+        </if>
+    </select>
+</mapper>

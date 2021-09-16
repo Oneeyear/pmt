@@ -2,7 +2,6 @@ package com.yl.pmt.pojo.vo;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -22,13 +21,11 @@ public class BaseVo implements Serializable {
 	/**
 	 * 逻辑状态
 	 */
-	@ApiModelProperty(value = "逻辑状态")
 	private String logicState;
 
 	/**
 	 * 创建人
 	 */
-	@ApiModelProperty(value = "创建人")
 	private String createUser;
 
 	/**
@@ -36,13 +33,11 @@ public class BaseVo implements Serializable {
 	 */
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@ApiModelProperty(value = "创建时间")
 	private Date createTime;
 
 	/**
 	 * 修改人
 	 */
-	@ApiModelProperty(value = "修改人")
 	private String modifyUser;
 
 	/**
@@ -50,6 +45,6 @@ public class BaseVo implements Serializable {
 	 */
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@ApiModelProperty(value = "修改时间")
 	private Date modifyTime;
+
 }

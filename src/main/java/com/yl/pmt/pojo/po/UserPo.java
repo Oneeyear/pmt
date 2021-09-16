@@ -1,7 +1,10 @@
 package com.yl.pmt.pojo.po;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * 用户实体类
@@ -10,18 +13,20 @@ import lombok.Data;
  * @date 2021/9/16 3:03 下午
  */
 @Data
+@Accessors(chain = true)
 @TableName(value = "user")
 public class UserPo extends BasePo {
 
 	/**
 	 * 主键
 	 */
+	@TableId(type = IdType.AUTO)
 	private Integer id;
 
 	/**
-	 * 用户ID
+	 * 用户名
 	 */
-	private Integer userId;
+	private String name;
 
 	/**
 	 * 部门（基础资料/服务质量...）
@@ -41,6 +46,6 @@ public class UserPo extends BasePo {
 	/**
 	 * 启用状态
 	 */
-	private String enable;
+	private String status;
 
 }

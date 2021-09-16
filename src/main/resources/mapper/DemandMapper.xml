@@ -2,5 +2,63 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.yl.pmt.mapper.DemandMapper">
+    <update id="removeDemands">
+        update demand
+        set modify_time = now(),
+        logic_state = 'N'
+        where id in
+        <foreach item='id' index='index' collection='list' open='(' separator=',' close=')'>
+            #{id}
+        </foreach>
+    </update>
 
+    <select id="selectDemandList" resultType="com.yl.pmt.pojo.po.DemandPo">
+        select id as id,
+        user_id as userId,
+        demand as demand,
+        demand_type as demandType,
+        plan_start_time as planStartTime,
+        plan_end_time as planEndTime,
+        plan_test_time as planTestTime,
+        plan_online_time as planOnlineTime,
+        start_time as startTime,
+        end_time as endTime,
+        test_time as testTime,
+        remark as remark,
+        status as status,
+        logic_state as logicState,
+        create_user as createUser,
+        create_time as createTime,
+        modify_user as modifyUser,
+        modify_time as modifyTime
+        from demand
+        where logic_state = 'Y'
+        <if test="userId != null and userId != ''">
+            and user_id = #{userId}
+        </if>
+        <if test="demand != null and demand != ''">
+            and demand like CONCAT('%', #{demand}, '%')
+        </if>
+        <if test="demandType != null and demandType != ''">
+            and demand_type = #{demandType}
+        </if>
+        <if test="startTime != null and startTime != ''">
+            and start_time <![CDATA[>=]]> #{startTime}
+        </if>
+        <if test="endTime != null and endTime != ''">
+            and end_time <![CDATA[<=]]> #{endTime}
+        </if>
+        <if test="status != null and status != ''">
+            and status = #{status}
+        </if>
+    </select>
+
+    <delete id="updateDemandStatus">
+        update demand
+        set status = #{status}
+        where id in
+        <foreach item='id' index='index' collection='ids' open='(' separator=',' close=')'>
+            #{id}
+        </foreach>
+    </delete>
 </mapper>

@@ -23,7 +23,7 @@ public class BaseVo implements Serializable {
 	 * 逻辑状态
 	 */
 	@ApiModelProperty(value = "逻辑状态")
-	private String logicalState;
+	private String logicState;
 
 	/**
 	 * 创建人

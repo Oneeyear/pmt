@@ -1,19 +1,13 @@
 package com.yl.pmt.pojo.vo;
 
-import com.alibaba.fastjson.annotation.JSONField;
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * @author pch
@@ -25,24 +19,37 @@ public class BaseVo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * 逻辑状态
+	 */
+	@ApiModelProperty(value = "逻辑状态")
+	private String logicalState;
+
+	/**
+	 * 创建人
+	 */
 	@ApiModelProperty(value = "创建人")
-	private String createByName;
+	private String createUser;
 
-	@ApiModelProperty(value = "修改人")
-	private String updateByName;
-
+	/**
+	 * 创建时间
+	 */
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@ApiModelProperty(value = "创建时间")
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
-	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
-	@JsonSerialize(using = LocalDateTimeSerializer.class)
-	private LocalDateTime createTime;
+	private Date createTime;
 
-	@ApiModelProperty(value = "修改时间")
-	@TableField(fill = FieldFill.INSERT_UPDATE)
+	/**
+	 * 修改人
+	 */
+	@ApiModelProperty(value = "修改人")
+	private String modifyUser;
+
+	/**
+	 * 修改时间
+	 */
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-	@JSONField(format = "yyyy-MM-dd HH:mm:ss")
-	@JsonDeserialize(using = LocalDateTimeDeserializer.class)
-	@JsonSerialize(using = LocalDateTimeSerializer.class)
-	private LocalDateTime updateTime;
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@ApiModelProperty(value = "修改时间")
+	private Date modifyTime;
 }

@@ -1,12 +1,9 @@
 package com.yl.pmt.pojo.po;
 
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.util.Date;
@@ -17,10 +14,9 @@ import java.util.Date;
  * @author pch
  * @date 2021/9/15 7:04 下午
  */
-@Api(value = "com-yl-pmt-pojo-DemandDto")
 @Data
 @TableName(value = "demand")
-public class DemandPo {
+public class DemandPo extends BasePo{
 	/**
 	 * 主键
 	 */
@@ -28,9 +24,9 @@ public class DemandPo {
 	private Integer id;
 
 	/**
-	 * 姓名
+	 * 用户ID
 	 */
-	private String name;
+	private Integer userId;
 
 	/**
 	 * 需求
@@ -89,30 +85,4 @@ public class DemandPo {
 	 */
 	private String remark;
 
-	/**
-	 * 逻辑状态
-	 */
-	private String logicalState;
-
-	/**
-	 * 创建人
-	 */
-	private String createUser;
-
-	/**
-	 * 创建时间
-	 */
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
-	private Date createTime;
-
-	/**
-	 * 修改人
-	 */
-	private String modifyUser;
-
-	/**
-	 * 修改时间
-	 */
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
-	private Date modifyTime;
 }

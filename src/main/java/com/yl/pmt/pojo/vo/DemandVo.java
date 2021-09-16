@@ -15,7 +15,7 @@ import java.util.Date;
  */
 @Api(value = "需求实体")
 @Data
-public class DemandVo {
+public class DemandVo extends BaseVo{
 	/**
 	 * 主键
 	 */
@@ -23,10 +23,10 @@ public class DemandVo {
 	private Integer id;
 
 	/**
-	 * 姓名
+	 * 用户ID
 	 */
-	@ApiModelProperty(value = "姓名")
-	private String name;
+	@ApiModelProperty(value = "用户ID")
+	private Integer userId;
 
 	/**
 	 * 需求
@@ -95,35 +95,4 @@ public class DemandVo {
 	@ApiModelProperty(value = "备注")
 	private String remark;
 
-	/**
-	 * 逻辑状态
-	 */
-	@ApiModelProperty(value = "逻辑状态")
-	private String logicalState;
-
-	/**
-	 * 创建人
-	 */
-	@ApiModelProperty(value = "创建人")
-	private String createUser;
-
-	/**
-	 * 创建时间
-	 */
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@ApiModelProperty(value = "创建时间")
-	private Date createTime;
-
-	/**
-	 * 修改人
-	 */
-	@ApiModelProperty(value = "修改人")
-	private String modifyUser;
-
-	/**
-	 * 修改时间
-	 */
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@ApiModelProperty(value = "修改时间")
-	private Date modifyTime;
 }

@@ -11,7 +11,7 @@ import java.util.Date;
  * @date 2021/9/15 7:04 下午
  */
 @Data
-public class DemandDto {
+public class DemandDto extends BaseDto{
 
 	/**
 	 * 主键
@@ -19,9 +19,9 @@ public class DemandDto {
 	private Integer id;
 
 	/**
-	 * 姓名
+	 * 用户ID
 	 */
-	private String name;
+	private Integer userId;
 
 	/**
 	 * 需求
@@ -73,28 +73,4 @@ public class DemandDto {
 	 */
 	private String remark;
 
-	/**
-	 * 逻辑状态
-	 */
-	private String logicalState;
-
-	/**
-	 * 创建人
-	 */
-	private String createUser;
-
-	/**
-	 * 创建时间
-	 */
-	private Date createTime;
-
-	/**
-	 * 修改人
-	 */
-	private String modifyUser;
-
-	/**
-	 * 修改时间
-	 */
-	private Date modifyTime;
 }

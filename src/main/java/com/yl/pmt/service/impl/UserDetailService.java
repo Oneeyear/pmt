@@ -7,6 +7,7 @@ import com.yl.pmt.mapper.DemandMapper;
 import com.yl.pmt.mapper.UserDetailMapper;
 import com.yl.pmt.pojo.dto.UserDetailDto;
 import com.yl.pmt.pojo.po.UserDetailPo;
+import com.yl.pmt.pojo.vo.UserDetailVo;
 import com.yl.pmt.security.mapper.UserMapper;
 import com.yl.pmt.security.mapper.UserRoleMapper;
 import com.yl.pmt.security.pojo.User;
@@ -16,6 +17,7 @@ import com.yl.pmt.service.IUserDetailService;
 import com.yl.pmt.util.CnToPyUtil;
 import com.yl.pmt.util.EntityConvertUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -122,13 +124,27 @@ public class UserDetailService extends ServiceImpl<UserDetailMapper, UserDetailP
 	 */
 	@Override
 	public void delUsers(List<Integer> ids) {
-		if (CollectionUtils.isEmpty(ids)) {
-			throw new BusinessException("传入数据为空！");
-		}
+		Optional.ofNullable(ids).orElseThrow(() -> new BusinessException("传入数据为空！"));
 		Long count = demandMapper.countDemandByIds(ids);
 		if (count > 0) {
 			throw new BusinessException("待删除用户中有关联需求，请先删除需求再对人员进行删除！");
 		}
 		userDetailMapper.removeUsers(ids);
+	}
+
+	/**
+	 * 获取用户信息
+	 *
+	 * @return
+	 */
+	@Override
+	public UserDetailVo getUserInfo() {
+		String userCode = SecurityUtil.getUserCode();
+		QueryWrapper<UserDetailPo> queryWrapper = new QueryWrapper<>();
+		queryWrapper.eq("user_code", userCode);
+		List<UserDetailPo> pos = userDetailMapper.selectList(queryWrapper);
+		Optional.ofNullable(pos).orElseThrow(() -> new BusinessException("用户数据为空！"));
+		UserDetailVo vo = (UserDetailVo) EntityConvertUtil.convert(pos.get(0), "Vo");
+		return vo;
 	}
 }

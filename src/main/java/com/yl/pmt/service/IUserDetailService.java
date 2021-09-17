@@ -3,6 +3,8 @@ package com.yl.pmt.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.yl.pmt.pojo.dto.UserDetailDto;
 import com.yl.pmt.pojo.po.UserDetailPo;
+import com.yl.pmt.pojo.vo.UserDetailVo;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 
@@ -35,4 +37,11 @@ public interface IUserDetailService extends IService<UserDetailPo> {
 	 * @param ids
 	 */
 	void delUsers(List<Integer> ids);
+
+	/**
+	 * 获取用户信息
+	 *
+	 * @return
+	 */
+	UserDetailVo getUserInfo();
 }

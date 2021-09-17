@@ -2,12 +2,15 @@ package com.yl.pmt.controller;
 
 import com.yl.pmt.pojo.dto.UserDetailDto;
 import com.yl.pmt.pojo.po.UserDetailPo;
+import com.yl.pmt.pojo.vo.UserDetailVo;
 import com.yl.pmt.result.BaseResponse;
 import com.yl.pmt.result.ResponseData;
+import com.yl.pmt.security.pojo.SelfUser;
 import com.yl.pmt.service.IUserDetailService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -64,6 +67,20 @@ public class UserController extends BaseResponse {
 	public ResponseData del(@RequestParam(value = "ids") List<Integer> ids) {
 		userService.delUsers(ids);
 		return success("删除成功！");
+	}
+
+	/**
+	 * 用户信息
+	 *
+	 * @return
+	 * @author pch
+	 * @CreateTime 2021/6/2 14:52
+	 */
+	@ApiOperation(value = "获取用户信息")
+	@RequestMapping(value = "/info", method = RequestMethod.GET)
+	public ResponseData userInfo() {
+		UserDetailVo vo = userService.getUserInfo();
+		return success("用户端信息", vo);
 	}
 
 }

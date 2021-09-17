@@ -45,4 +45,11 @@ public class SecurityUtil {
 	public static String getAccount() {
 		return getUserInfo().getAccount();
 	}
+
+	/**
+	 * 获取当前用户ID
+	 */
+	public static String getUserCode() {
+		return getUserInfo().getUserCode();
+	}
 }

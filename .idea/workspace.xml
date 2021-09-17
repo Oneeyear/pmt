@@ -5,30 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e332fb8-5143-4e2b-9f76-949ef6a94087" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yl/pmt/PmtApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yl/pmt/config/Swagger3Config.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yl/pmt/controller/DemoController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yl/pmt/exception/BusinessException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yl/pmt/exception/DefaultException.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yl/pmt/mapper/DemoMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yl/pmt/pojo/dto/BaseDto.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yl/pmt/pojo/dto/DemoDto.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yl/pmt/pojo/po/BasePo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yl/pmt/pojo/po/DemoPo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yl/pmt/pojo/vo/BaseVo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yl/pmt/pojo/vo/DemoVo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yl/pmt/result/BaseResponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yl/pmt/result/ResponseData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yl/pmt/service/IDemoService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yl/pmt/service/impl/DemoService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yl/pmt/util/EntityConvertUtil.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yl/pmt/util/MapBeanUtil.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/yl/pmt/util/ResultUtil.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/logback.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/DemoMapper.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/yl/pmt/PmtApplicationTests.class" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/util/SecurityUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/util/SecurityUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/service/IUserDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/service/IUserDetailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/service/impl/DemandService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/service/impl/DemandService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/service/impl/UserDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/service/impl/UserDetailService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +46,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="MyBatisLogPluginindexNum" value="404" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -70,9 +54,22 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="settings.editor.selected.configurable" value="spring.boot" />
   </component>
   <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="pmt" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="pmt" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="PmtApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="pmt" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.yl.pmt.PmtApplication" />
@@ -98,17 +95,99 @@
       <option name="project" value="LOCAL" />
       <updated>1631674938038</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="优化登录">
+      <created>1631888575107</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1631888575107</updated>
+    </task>
+    <task id="LOCAL-00003" summary="优化">
+      <created>1631888967428</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1631888967428</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="12f49ca9-e513-4d18-95af-5095de7e0c9b">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$PROJECT_DIR$" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+        <entry key="479c0055-dca8-4afd-abf9-d712c2416823">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="structure">
+                    <value>
+                      <list>
+                        <option value="dir:/Users/pengchenghui/dev/yunlu/IdeaProjects/work/pmt/src/main/java/com/yl/pmt/pojo/vo" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="12f49ca9-e513-4d18-95af-5095de7e0c9b" value="TOOL_WINDOW" />
+        <entry key="479c0055-dca8-4afd-abf9-d712c2416823" value="TOOL_WINDOW" />
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="项目初始化" />
     <MESSAGE value="项目初始化..." />
-    <option name="LAST_COMMIT_MESSAGE" value="项目初始化..." />
+    <MESSAGE value="优化登录" />
+    <MESSAGE value="优化" />
+    <option name="LAST_COMMIT_MESSAGE" value="优化" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

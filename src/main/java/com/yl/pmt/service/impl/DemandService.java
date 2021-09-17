@@ -63,6 +63,7 @@ public class DemandService extends ServiceImpl<DemandMapper, DemandPo> implement
 	@Override
 	@Transactional(rollbackFor = Exception.class)
 	public void delDemands(List<Integer> ids) {
+		Optional.ofNullable(ids).orElseThrow(() -> new BusinessException("传入数据为空！"));
 		demandMapper.removeDemands(ids);
 	}
 

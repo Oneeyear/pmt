@@ -28,7 +28,7 @@ public class UserDto extends BaseDto {
 	 */
 	@NotEmpty(message = "用户名不能为空")
 	@Size(max = 50, message = "用户名不能超过50位")
-	@ApiModelProperty(value = "用户ID")
+	@ApiModelProperty(value = "用户名")
 	private String name;
 
 	/**

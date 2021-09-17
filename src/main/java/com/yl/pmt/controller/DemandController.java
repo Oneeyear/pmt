@@ -43,11 +43,11 @@ public class DemandController extends BaseResponse {
 	}
 
 	/**
-	 * 新增需求
+	 * 删除需求
 	 *
 	 * @return
 	 */
-	@ApiOperation(value = "新增需求", notes = "新增需求")
+	@ApiOperation(value = "删除需求", notes = "删除需求")
 	@RequestMapping(value = "/del", method = RequestMethod.DELETE)
 	public ResponseData del(String ids) {
 		demandService.delDemands(ids);

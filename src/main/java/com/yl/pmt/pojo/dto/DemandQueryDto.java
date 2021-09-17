@@ -51,13 +51,13 @@ public class DemandQueryDto {
 	/**
 	 * 开始时间
 	 */
-	@ApiModelProperty(value = "实际开始时间")
+	@ApiModelProperty(value = "开始时间")
 	private Date startTime;
 
 	/**
 	 * 结束时间
 	 */
-	@ApiModelProperty(value = "实际结束时间")
+	@ApiModelProperty(value = "结束时间")
 	private Date endTime;
 
 	/**

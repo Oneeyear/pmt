@@ -1,6 +1,7 @@
 package com.yl.pmt.pojo.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -13,6 +14,7 @@ import java.util.Date;
  * @date 2021/9/15 9:19 上午
  */
 @Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class BaseDto implements Serializable {
 
 	private static final long serialVersionUID = 1L;

@@ -1,5 +1,6 @@
 package com.yl.pmt.pojo.po;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -11,6 +12,7 @@ import java.util.Date;
  * @date 2021/9/15 9:20 上午
  */
 @Data
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class BasePo implements Serializable {
 
 	private static final long serialVersionUID = 1L;

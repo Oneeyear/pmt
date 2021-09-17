@@ -7,7 +7,7 @@
         set modify_time = now(),
         logic_state = 'N'
         where id in
-        <foreach item='id' index='index' collection='list' open='(' separator=',' close=')'>
+        <foreach item='id' index='index' collection='ids' open='(' separator=',' close=')'>
             #{id}
         </foreach>
     </update>
@@ -61,4 +61,14 @@
             #{id}
         </foreach>
     </delete>
+
+    <select id="countDemandByIds" resultType="java.lang.Long">
+        select count(*)
+        from demand where logic_state = 'Y'
+        and status != 'finish'
+        and user_id in
+        <foreach item='id' index='index' collection='userIds' open='(' separator=',' close=')'>
+            #{id}
+        </foreach>
+    </select>
 </mapper>

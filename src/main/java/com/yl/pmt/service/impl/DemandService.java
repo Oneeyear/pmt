@@ -62,13 +62,8 @@ public class DemandService extends ServiceImpl<DemandMapper, DemandPo> implement
 	 */
 	@Override
 	@Transactional(rollbackFor = Exception.class)
-	public void delDemands(String ids) {
-		String[] str = ids.split(",");
-		List<String> idList = Arrays.asList(str);
-		// String -> Integer
-		List<Integer> list = Lists.newArrayList();
-		idList.forEach(id -> list.add(Integer.valueOf(id)));
-		demandMapper.removeDemands(list);
+	public void delDemands(List<Integer> ids) {
+		demandMapper.removeDemands(ids);
 	}
 
 	/**
@@ -99,8 +94,28 @@ public class DemandService extends ServiceImpl<DemandMapper, DemandPo> implement
 	}
 
 	/**
+	 * 修改需求
+	 *
+	 * @param dto
+	 */
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public void editDemand(DemandDto dto) {
+		Optional.ofNullable(dto).orElseThrow(() -> new BusinessException("数据不能为空！"));
+		DemandPo po = (DemandPo) EntityConvertUtil.convert(dto, "Po");
+		Integer id = po.getId();
+		if (id == null) {
+			throw new BusinessException("传入参数为空！");
+		}
+		// 更新操作
+		po.setModifyTime(new Date());
+		this.updateById(po);
+	}
+
+	/**
 	 * 需求状态改变
 	 */
+	@Transactional(rollbackFor = Exception.class)
 	public void changeDemandStatus() {
 		// 查询生效的需求
 		QueryWrapper<DemandPo> queryWrapper = new QueryWrapper<>();
@@ -137,6 +152,5 @@ public class DemandService extends ServiceImpl<DemandMapper, DemandPo> implement
 			demandMapper.updateDemandStatus(finish, "finish");
 		}
 	}
-
 
 }

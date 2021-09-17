@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -37,21 +38,9 @@ public class DemandController extends BaseResponse {
 	 */
 	@ApiOperation(value = "新增需求", notes = "新增需求")
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public ResponseData addDemand(@Validated DemandDto dto) {
+	public ResponseData add(@Validated DemandDto dto) {
 		demandService.addDemand(dto);
 		return success("新增成功！");
-	}
-
-	/**
-	 * 删除需求
-	 *
-	 * @return
-	 */
-	@ApiOperation(value = "删除需求", notes = "删除需求")
-	@RequestMapping(value = "/del", method = RequestMethod.DELETE)
-	public ResponseData del(String ids) {
-		demandService.delDemands(ids);
-		return success("删除成功！");
 	}
 
 	/**
@@ -61,9 +50,33 @@ public class DemandController extends BaseResponse {
 	 */
 	@ApiOperation(value = "查询需求", notes = "查询需求列表")
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ResponseData listDemands(DemandQueryDto dto) {
+	public ResponseData list(DemandQueryDto dto) {
 		List<Map<String, Object>> list = demandService.listDemands(dto);
 		return success("查询成功！", list);
+	}
+
+	/**
+	 * 删除需求
+	 *
+	 * @return
+	 */
+	@ApiOperation(value = "删除需求", notes = "删除需求")
+	@RequestMapping(value = "/del", method = RequestMethod.DELETE)
+	public ResponseData del(@RequestParam(value = "ids") List<Integer> ids) {
+		demandService.delDemands(ids);
+		return success("删除成功！");
+	}
+
+	/**
+	 * 修改需求
+	 *
+	 * @return
+	 */
+	@ApiOperation(value = "修改需求", notes = "修改需求")
+	@RequestMapping(value = "/edit", method = RequestMethod.PUT)
+	public ResponseData edit(@Validated DemandDto dto) {
+		demandService.editDemand(dto);
+		return success("修改成功！");
 	}
 
 }

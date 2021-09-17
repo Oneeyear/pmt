@@ -1,10 +1,9 @@
 package com.yl.pmt.service.impl;
 
-
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.google.common.collect.Lists;
 import com.yl.pmt.exception.BusinessException;
+import com.yl.pmt.mapper.DemandMapper;
 import com.yl.pmt.mapper.UserMapper;
 import com.yl.pmt.pojo.dto.UserDto;
 import com.yl.pmt.pojo.po.UserPo;
@@ -15,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -32,6 +30,9 @@ public class UserService extends ServiceImpl<UserMapper, UserPo> implements IUse
 
 	@Autowired
 	UserMapper userMapper;
+
+	@Autowired
+	DemandMapper demandMapper;
 
 	/**
 	 * 新增用户
@@ -79,12 +80,14 @@ public class UserService extends ServiceImpl<UserMapper, UserPo> implements IUse
 	 * @param ids
 	 */
 	@Override
-	public void delUsers(String ids) {
-		String[] str = ids.split(",");
-		List<String> idList = Arrays.asList(str);
-		// String -> Integer
-		List<Integer> list = Lists.newArrayList();
-		idList.forEach(id -> list.add(Integer.valueOf(id)));
-		userMapper.removeUsers(list);
+	public void delUsers(List<Integer> ids) {
+		if (CollectionUtils.isEmpty(ids)) {
+			throw new BusinessException("传入数据为空！");
+		}
+		Long count = demandMapper.countDemandByIds(ids);
+		if (count > 0) {
+			throw new BusinessException("待删除用户中有关联需求，请先删除需求再对人员进行删除！");
+		}
+		userMapper.removeUsers(ids);
 	}
 }

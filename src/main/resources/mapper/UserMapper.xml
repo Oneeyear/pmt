@@ -8,7 +8,7 @@
         status = 'N',
         logic_state = 'N'
         where id in
-        <foreach item='id' index='index' collection='list' open='(' separator=',' close=')'>
+        <foreach item='id' index='index' collection='ids' open='(' separator=',' close=')'>
             #{id}
         </foreach>
     </update>

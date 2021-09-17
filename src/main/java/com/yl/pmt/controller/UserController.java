@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -36,7 +37,7 @@ public class UserController extends BaseResponse {
 	 */
 	@ApiOperation(value = "新增用户", notes = "新增用户")
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public ResponseData addUser(@Validated UserDto dto) {
+	public ResponseData add(@Validated UserDto dto) {
 		userService.addUser(dto);
 		return success("新增成功！");
 	}
@@ -48,7 +49,7 @@ public class UserController extends BaseResponse {
 	 */
 	@ApiOperation(value = "查询用户", notes = "查询用户")
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ResponseData listUsers() {
+	public ResponseData list() {
 		List<UserPo> pos = userService.listUsers();
 		return success("查询成功！", pos);
 	}
@@ -60,7 +61,7 @@ public class UserController extends BaseResponse {
 	 */
 	@ApiOperation(value = "删除用户", notes = "删除用户")
 	@RequestMapping(value = "/del", method = RequestMethod.DELETE)
-	public ResponseData addUsers(String ids) {
+	public ResponseData del(@RequestParam(value = "ids") List<Integer> ids) {
 		userService.delUsers(ids);
 		return success("删除成功！");
 	}

@@ -33,5 +33,5 @@ public interface IUserService extends IService<UserPo> {
 	 *
 	 * @param ids
 	 */
-	void delUsers(String ids);
+	void delUsers(List<Integer> ids);
 }

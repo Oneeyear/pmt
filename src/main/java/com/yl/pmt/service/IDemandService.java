@@ -28,7 +28,7 @@ public interface IDemandService extends IService<DemandPo> {
 	 *
 	 * @param ids
 	 */
-	void delDemands(String ids);
+	void delDemands(List<Integer> ids);
 
 	/**
 	 * 查询需求
@@ -37,4 +37,11 @@ public interface IDemandService extends IService<DemandPo> {
 	 * @return
 	 */
 	List<Map<String, Object>> listDemands(DemandQueryDto dto);
+
+	/**
+	 * 修改需求
+	 *
+	 * @param dto
+	 */
+	void editDemand(DemandDto dto);
 }

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.yl.pmt.pojo.dto.DemandQueryDto;
 import com.yl.pmt.pojo.po.UserPo;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -21,9 +22,9 @@ public interface UserMapper extends BaseMapper<UserPo> {
 	/**
 	 * 删除人员
 	 *
-	 * @param list
+	 * @param ids
 	 */
-	void removeUsers(List<Integer> list);
+	void removeUsers(@Param("ids") List<Integer> ids);
 
 	/**
 	 * 查询人员

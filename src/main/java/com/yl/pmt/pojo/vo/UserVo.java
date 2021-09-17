@@ -37,9 +37,4 @@ public class UserVo extends BaseVo {
 	 */
 	private String remark;
 
-	/**
-	 * 启用状态
-	 */
-	private String status;
-
 }

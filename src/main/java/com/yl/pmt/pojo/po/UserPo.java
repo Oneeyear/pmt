@@ -14,7 +14,7 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
-@TableName(value = "user")
+@TableName(value = "sys_user_detail")
 public class UserPo extends BasePo {
 
 	/**
@@ -42,10 +42,5 @@ public class UserPo extends BasePo {
 	 * 备注
 	 */
 	private String remark;
-
-	/**
-	 * 启用状态
-	 */
-	private String status;
 
 }

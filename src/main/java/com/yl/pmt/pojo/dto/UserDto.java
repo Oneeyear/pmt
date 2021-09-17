@@ -52,10 +52,4 @@ public class UserDto extends BaseDto {
 	@ApiModelProperty(value = "备注")
 	private String remark;
 
-	/**
-	 * 启用状态
-	 */
-	@ApiModelProperty(value = "启用状态")
-	private String status;
-
 }

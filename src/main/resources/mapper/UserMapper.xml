@@ -3,9 +3,8 @@
 
 <mapper namespace="com.yl.pmt.mapper.UserMapper">
     <update id="removeUsers">
-        update user
+        update sys_user_detail
         set modify_time = now(),
-        status = 'N',
         logic_state = 'N'
         where id in
         <foreach item='id' index='index' collection='ids' open='(' separator=',' close=')'>
@@ -19,15 +18,13 @@
         dept as dept,
         area as area,
         remark as remark,
-        status as status,
         logic_state as logicState,
         create_user as createUser,
         create_time as createTime,
         modify_user as modifyUser,
         modify_time as modifyTime
-        from user
+        from sys_user_detail
         where logic_state = 'Y'
-        and status = 'Y'
         <if test="userId != null and userId != ''">
             and id = #{userId}
         </if>

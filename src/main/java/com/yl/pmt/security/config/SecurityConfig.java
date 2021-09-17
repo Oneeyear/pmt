@@ -111,7 +111,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.formLogin()
 				.loginProcessingUrl("/login")
 				// username字段重命名
-				.usernameParameter("account")
+				// .usernameParameter("account")
 				// 配置登录成功自定义处理类
 				.successHandler(userLoginSuccessHandler)
 				// 配置登录失败自定义处理类

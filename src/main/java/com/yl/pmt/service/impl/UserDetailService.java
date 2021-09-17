@@ -8,7 +8,10 @@ import com.yl.pmt.mapper.UserDetailMapper;
 import com.yl.pmt.pojo.dto.UserDetailDto;
 import com.yl.pmt.pojo.po.UserDetailPo;
 import com.yl.pmt.security.mapper.UserMapper;
+import com.yl.pmt.security.mapper.UserRoleMapper;
 import com.yl.pmt.security.pojo.User;
+import com.yl.pmt.security.pojo.UserRole;
+import com.yl.pmt.security.util.SecurityUtil;
 import com.yl.pmt.service.IUserDetailService;
 import com.yl.pmt.util.CnToPyUtil;
 import com.yl.pmt.util.EntityConvertUtil;
@@ -42,6 +45,9 @@ public class UserDetailService extends ServiceImpl<UserDetailMapper, UserDetailP
 	@Autowired
 	UserMapper userMapper;
 
+	@Autowired
+	UserRoleMapper userRoleMapper;
+
 	/**
 	 * 新增用户
 	 *
@@ -65,19 +71,29 @@ public class UserDetailService extends ServiceImpl<UserDetailMapper, UserDetailP
 		String userCode = "pmt-" + UUID.randomUUID();
 		// 保存操作
 		po.setUserCode(userCode);
+		po.setCreateUser(SecurityUtil.getAccount());
 		po.setCreateTime(new Date());
+		po.setModifyUser(SecurityUtil.getAccount());
 		po.setModifyTime(new Date());
 		int df = userDetailMapper.insert(po);
 		User user = new User();
 		String account = CnToPyUtil.getPingYin(name);
 		String password = CnToPyUtil.getPinYinHeadChar(name) + 123456;
 		// 密码加密
-		password = new BCryptPasswordEncoder().encode(password);
+		String scPassword = new BCryptPasswordEncoder().encode(password);
 		user.setAccount(account);
-		user.setPassword(password);
+		user.setPassword(scPassword);
 		user.setUserCode(userCode);
+		user.setStatus("NORMAL");
 		int uf = userMapper.insert(user);
-		if (df == 0 || uf == 0) {
+
+		// 用户角色表
+		UserRole userRole = new UserRole();
+		userRole.setUserCode(userCode);
+		userRole.setRoleId(1L);
+		int rf = userRoleMapper.insert(userRole);
+
+		if (df == 0 || uf == 0 || rf == 0) {
 			throw new BusinessException("新增失败！");
 		}
 		StringBuilder builder = new StringBuilder("新增成功，用户登陆账号为");

@@ -3,6 +3,7 @@ package com.yl.pmt.pojo.dto;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotEmpty;
 import java.util.Date;
@@ -52,13 +53,13 @@ public class DemandQueryDto {
 	 * 开始时间
 	 */
 	@ApiModelProperty(value = "开始时间")
-	private Date startTime;
+	private String startTime;
 
 	/**
 	 * 结束时间
 	 */
 	@ApiModelProperty(value = "结束时间")
-	private Date endTime;
+	private String endTime;
 
 	/**
 	 * 状态 normal-正常 delay-延期 suspend-挂起 finish-完成

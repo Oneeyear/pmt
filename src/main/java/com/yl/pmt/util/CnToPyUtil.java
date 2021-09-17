@@ -68,6 +68,7 @@ public class CnToPyUtil {
 			} else {
 				convert += word;
 			}
+			log.info(convert);
 		}
 		return convert;
 	}

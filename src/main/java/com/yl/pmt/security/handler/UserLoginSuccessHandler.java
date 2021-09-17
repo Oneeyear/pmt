@@ -1,5 +1,6 @@
 package com.yl.pmt.security.handler;
 
+import com.yl.pmt.result.BaseResponse;
 import com.yl.pmt.security.config.JWTConfig;
 import com.yl.pmt.security.pojo.SelfUser;
 import com.yl.pmt.security.util.JWTTokenUtil;
@@ -22,22 +23,21 @@ import java.util.Map;
 @Slf4j
 @Component
 public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
-    /**
-     * 登录成功返回结果
-     * @Author pch
-     * @CreateTime 2020/10/3 9:27
-     */
-    @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication){
-        // 组装JWT
-        SelfUser selfUser =  (SelfUser) authentication.getPrincipal();
-        String token = JWTTokenUtil.createAccessToken(selfUser);
-        token = JWTConfig.tokenPrefix + token;
-        // 封装返回参数
-        Map<String,Object> resultData = new HashMap<>();
-        resultData.put("code","200");
-        resultData.put("msg", "登录成功");
-        resultData.put("token",token);
-        ResultUtil.responseJson(response,resultData);
-    }
+	/**
+	 * 登录成功返回结果
+	 *
+	 * @Author pch
+	 * @CreateTime 2020/10/3 9:27
+	 */
+	@Override
+	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
+		// 组装JWT
+		SelfUser selfUser = (SelfUser) authentication.getPrincipal();
+		String token = JWTTokenUtil.createAccessToken(selfUser);
+		token = JWTConfig.tokenPrefix + token;
+		Map<String, String> map = new HashMap<>();
+		map.put("token", token);
+		// 封装返回参数
+		ResultUtil.responseJson(response, BaseResponse.success("登录成功！", map));
+	}
 }

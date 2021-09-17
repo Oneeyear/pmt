@@ -33,17 +33,15 @@ public class JWTTokenUtil {
         // 登陆成功生成JWT
         String token = Jwts.builder()
                 // 放入用户名和用户ID
-                .setId(selfUser.getUserId()+"")
+                .setId(selfUser.getUserCode())
                 // 主题
-                .setSubject(selfUser.getUsername())
+                .setSubject(selfUser.getAccount())
                 // 签发时间
                 .setIssuedAt(new Date())
                 // 签发者
                 .setIssuer("pmt")
                 // 自定义属性 放入用户拥有权限
                 .claim("authorities", JSON.toJSONString(selfUser.getAuthorities()))
-                // 自定义账号字段
-                .claim("account", selfUser.getAccount())
                 // 失效时间
                 .setExpiration(new Date(System.currentTimeMillis() + JWTConfig.expiration))
                 // 签名算法和密钥

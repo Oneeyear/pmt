@@ -52,8 +52,8 @@ public class JwtAuthenticationTokenFilter extends BasicAuthenticationFilter {
                         .getBody();
                 // 获取用户名
                 String account = claims.getSubject();
-                String userId=claims.getId();
-                if(!StringUtils.isEmpty(account)&&!StringUtils.isEmpty(userId)) {
+                String userCode = claims.getId();
+                if(!StringUtils.isEmpty(account)&&!StringUtils.isEmpty(userCode)) {
                     // 获取角色
                     List<GrantedAuthority> authorities = new ArrayList<>();
                     String authority = claims.get("authorities").toString();
@@ -70,7 +70,7 @@ public class JwtAuthenticationTokenFilter extends BasicAuthenticationFilter {
                     selfUser.setAccount(claims.getSubject());
                     selfUser.setUserId(Long.parseLong(claims.getId()));
                     selfUser.setAuthorities(authorities);
-                    UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(selfUser, userId, authorities);
+                    UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(selfUser, userCode, authorities);
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                 }
             } catch (ExpiredJwtException e){

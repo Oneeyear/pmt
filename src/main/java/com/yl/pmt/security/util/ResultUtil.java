@@ -28,13 +28,13 @@ public class ResultUtil {
      * @Param  resultMap 数据
      * @Return void
      */
-    public static void responseJson(ServletResponse response, Map<String, Object> resultMap){
+    public static void responseJson(ServletResponse response, Object object){
         PrintWriter out = null;
         try {
             response.setCharacterEncoding("UTF-8");
             response.setContentType("application/json");
             out = response.getWriter();
-            out.println(JSON.toJSONString(resultMap));
+            out.println(JSON.toJSONString(object));
         } catch (Exception e) {
             log.error("【JSON输出异常】"+e);
         }finally{

@@ -12,7 +12,7 @@
 	</select>
 
 	<!-- 查询用户所有角色 -->
-	<select id="selectSysRoleByUserCode" resultType="com.yl.pmt.security.pojo.Role" parameterType="long">
+	<select id="selectSysRoleByUserCode" resultType="com.yl.pmt.security.pojo.Role" parameterType="java.lang.String">
 		SELECT sr.* FROM sys_role sr
 		LEFT JOIN sys_user_role se ON se.role_id = sr.role_id
 		WHERE se.user_code = #{userCode,jdbcType=VARCHAR}

@@ -2,7 +2,7 @@ package com.yl.pmt.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.yl.pmt.pojo.dto.DemandQueryDto;
-import com.yl.pmt.pojo.po.UserPo;
+import com.yl.pmt.pojo.po.UserDetailPo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -17,7 +17,7 @@ import java.util.List;
  */
 @Mapper
 @Repository
-public interface UserMapper extends BaseMapper<UserPo> {
+public interface UserDetailMapper extends BaseMapper<UserDetailPo> {
 
 	/**
 	 * 删除人员
@@ -32,5 +32,5 @@ public interface UserMapper extends BaseMapper<UserPo> {
 	 * @param dto
 	 * @return
 	 */
-	List<UserPo> selectUserList(DemandQueryDto dto);
+	List<UserDetailPo> selectUserList(DemandQueryDto dto);
 }

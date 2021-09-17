@@ -15,7 +15,7 @@ import javax.validation.constraints.Size;
  */
 @Api(value = "需求实体")
 @Data
-public class UserDto extends BaseDto {
+public class UserDetailDto extends BaseDto {
 
 	/**
 	 * 主键
@@ -51,5 +51,12 @@ public class UserDto extends BaseDto {
 	 */
 	@ApiModelProperty(value = "备注")
 	private String remark;
+
+	/**
+	 * 用户唯一标识
+	 */
+	@ApiModelProperty(value = "用户唯一标识")
+	private String userCode;
+
 
 }

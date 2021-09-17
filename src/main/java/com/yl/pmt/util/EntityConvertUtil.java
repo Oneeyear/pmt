@@ -47,8 +47,8 @@ public final class EntityConvertUtil {
 	/**
 	 * 映射实体类属性值
 	 * 取源对象class 获取类名，取type为要映射成为的类名。
-	 * 例如 参数1: UserVo.class     参数2: Po
-	 * 先查找对象为  User , 再匹配为 dto.UserPo
+	 * 例如 参数1: UserDetailVo.class     参数2: Po
+	 * 先查找对象为  User , 再匹配为 dto.UserDetailPo
 	 * 要求 类名Po Vo 必须大写， 并且包名为 vo.xxxVo  dto.xxxPo
 	 *
 	 * @param clz  源对象class

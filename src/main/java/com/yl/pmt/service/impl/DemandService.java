@@ -5,11 +5,11 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.google.common.collect.Lists;
 import com.yl.pmt.exception.BusinessException;
 import com.yl.pmt.mapper.DemandMapper;
-import com.yl.pmt.mapper.UserMapper;
+import com.yl.pmt.mapper.UserDetailMapper;
 import com.yl.pmt.pojo.dto.DemandDto;
 import com.yl.pmt.pojo.dto.DemandQueryDto;
 import com.yl.pmt.pojo.po.DemandPo;
-import com.yl.pmt.pojo.po.UserPo;
+import com.yl.pmt.pojo.po.UserDetailPo;
 import com.yl.pmt.service.IDemandService;
 import com.yl.pmt.util.EntityConvertUtil;
 import com.yl.pmt.util.MapBeanUtil;
@@ -34,7 +34,7 @@ public class DemandService extends ServiceImpl<DemandMapper, DemandPo> implement
 	DemandMapper demandMapper;
 
 	@Autowired
-	UserMapper userMapper;
+	UserDetailMapper userDetailMapper;
 
 	/**
 	 * 新增需求
@@ -81,9 +81,9 @@ public class DemandService extends ServiceImpl<DemandMapper, DemandPo> implement
 		List<DemandPo> demandPos = demandMapper.selectDemandList(dto);
 		Map<Integer, List<DemandPo>> updateGroupMap = demandPos.stream().collect(Collectors.groupingBy(DemandPo::getUserId));
 		// 查询人员
-		List<UserPo> userPos = userMapper.selectUserList(dto);
+		List<UserDetailPo> userDetailPos = userDetailMapper.selectUserList(dto);
 		List<Map<String, Object>> list = new ArrayList<>();
-		userPos.forEach(items -> {
+		userDetailPos.forEach(items -> {
 			Map<String, Object> map = MapBeanUtil.object2Map(items);
 			Integer id = items.getId();
 			// 不为空

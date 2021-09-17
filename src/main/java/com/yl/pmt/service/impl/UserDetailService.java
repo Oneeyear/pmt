@@ -4,12 +4,16 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yl.pmt.exception.BusinessException;
 import com.yl.pmt.mapper.DemandMapper;
-import com.yl.pmt.mapper.UserMapper;
-import com.yl.pmt.pojo.dto.UserDto;
-import com.yl.pmt.pojo.po.UserPo;
-import com.yl.pmt.service.IUserService;
+import com.yl.pmt.mapper.UserDetailMapper;
+import com.yl.pmt.pojo.dto.UserDetailDto;
+import com.yl.pmt.pojo.po.UserDetailPo;
+import com.yl.pmt.security.mapper.UserMapper;
+import com.yl.pmt.security.pojo.User;
+import com.yl.pmt.service.IUserDetailService;
+import com.yl.pmt.util.CnToPyUtil;
 import com.yl.pmt.util.EntityConvertUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
@@ -17,6 +21,7 @@ import org.springframework.util.CollectionUtils;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 
 /**
@@ -26,13 +31,16 @@ import java.util.Optional;
  * @date 2021/9/16 3:40 下午
  */
 @Service("userService")
-public class UserService extends ServiceImpl<UserMapper, UserPo> implements IUserService {
+public class UserDetailService extends ServiceImpl<UserDetailMapper, UserDetailPo> implements IUserDetailService {
 
 	@Autowired
-	UserMapper userMapper;
+	UserDetailMapper userDetailMapper;
 
 	@Autowired
 	DemandMapper demandMapper;
+
+	@Autowired
+	UserMapper userMapper;
 
 	/**
 	 * 新增用户
@@ -41,25 +49,42 @@ public class UserService extends ServiceImpl<UserMapper, UserPo> implements IUse
 	 */
 	@Override
 	@Transactional(rollbackFor = Exception.class)
-	public void addUser(UserDto dto) {
+	public String addUser(UserDetailDto dto) {
 		// 非空判断
 		Optional.ofNullable(dto).orElseThrow(() -> new BusinessException("用户信息不能为空！"));
-		UserPo po = (UserPo) EntityConvertUtil.convert(dto, "Po");
+		UserDetailPo po = (UserDetailPo) EntityConvertUtil.convert(dto, "Po");
 		// 姓名重复判断
 		String name = Optional.ofNullable(po.getName()).orElseThrow(() -> new BusinessException("用户名不能为空！"));
-		QueryWrapper<UserPo> queryWrapper = new QueryWrapper<>();
+		QueryWrapper<UserDetailPo> queryWrapper = new QueryWrapper<>();
 		queryWrapper.eq("name", name).eq("logic_state", "Y");
-		List<UserPo> pos = this.list(queryWrapper);
+		List<UserDetailPo> pos = this.list(queryWrapper);
 		if (!CollectionUtils.isEmpty(pos)) {
 			throw new BusinessException("用户名已存在！");
 		}
+		// 生成用户编码
+		String userCode = "pmt-" + UUID.randomUUID();
 		// 保存操作
+		po.setUserCode(userCode);
 		po.setCreateTime(new Date());
 		po.setModifyTime(new Date());
-		boolean flag = this.save(po);
-		if (!flag) {
+		int df = userDetailMapper.insert(po);
+		User user = new User();
+		String account = CnToPyUtil.getPingYin(name);
+		String password = CnToPyUtil.getPinYinHeadChar(name) + 123456;
+		// 密码加密
+		password = new BCryptPasswordEncoder().encode(password);
+		user.setAccount(account);
+		user.setPassword(password);
+		user.setUserCode(userCode);
+		int uf = userMapper.insert(user);
+		if (df == 0 || uf == 0) {
 			throw new BusinessException("新增失败！");
 		}
+		StringBuilder builder = new StringBuilder("新增成功，用户登陆账号为");
+		builder.append(account);
+		builder.append("，密码为");
+		builder.append(password);
+		return builder.toString();
 	}
 
 	/**
@@ -68,8 +93,8 @@ public class UserService extends ServiceImpl<UserMapper, UserPo> implements IUse
 	 * @return
 	 */
 	@Override
-	public List<UserPo> listUsers() {
-		QueryWrapper<UserPo> queryWrapper = new QueryWrapper<>();
+	public List<UserDetailPo> listUsers() {
+		QueryWrapper<UserDetailPo> queryWrapper = new QueryWrapper<>();
 		queryWrapper.eq("logic_state", "Y");
 		return this.list(queryWrapper);
 	}
@@ -88,6 +113,6 @@ public class UserService extends ServiceImpl<UserMapper, UserPo> implements IUse
 		if (count > 0) {
 			throw new BusinessException("待删除用户中有关联需求，请先删除需求再对人员进行删除！");
 		}
-		userMapper.removeUsers(ids);
+		userDetailMapper.removeUsers(ids);
 	}
 }

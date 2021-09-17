@@ -1,10 +1,10 @@
 package com.yl.pmt.controller;
 
-import com.yl.pmt.pojo.dto.UserDto;
-import com.yl.pmt.pojo.po.UserPo;
+import com.yl.pmt.pojo.dto.UserDetailDto;
+import com.yl.pmt.pojo.po.UserDetailPo;
 import com.yl.pmt.result.BaseResponse;
 import com.yl.pmt.result.ResponseData;
-import com.yl.pmt.service.IUserService;
+import com.yl.pmt.service.IUserDetailService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ import java.util.List;
 public class UserController extends BaseResponse {
 
 	@Autowired
-	IUserService userService;
+	IUserDetailService userService;
 
 	/**
 	 * 新增用户
@@ -37,9 +37,9 @@ public class UserController extends BaseResponse {
 	 */
 	@ApiOperation(value = "新增用户", notes = "新增用户")
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public ResponseData add(@Validated UserDto dto) {
-		userService.addUser(dto);
-		return success("新增成功！");
+	public ResponseData add(@Validated UserDetailDto dto) {
+		String msg = userService.addUser(dto);
+		return success(msg);
 	}
 
 	/**
@@ -50,7 +50,7 @@ public class UserController extends BaseResponse {
 	@ApiOperation(value = "查询用户", notes = "查询用户")
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ResponseData list() {
-		List<UserPo> pos = userService.listUsers();
+		List<UserDetailPo> pos = userService.listUsers();
 		return success("查询成功！", pos);
 	}
 

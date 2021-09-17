@@ -129,12 +129,24 @@ public class DemandService extends ServiceImpl<DemandMapper, DemandPo> implement
 			Date startTime = po.getStartTime();
 			Date endTime = po.getEndTime();
 			Date testTime = po.getTestTime();
-			boolean isDelay = startTime.after(planStartTime) || endTime.after(planEndTime);
+			boolean isDelay = false;
+			boolean isNotNull = planStartTime != null && planEndTime != null && startTime != null && endTime == null;
+			if (isNotNull) {
+				isDelay = startTime.after(planStartTime) || endTime.after(planEndTime);
+			}
 			if (isDelay) {
 				delay.add(po.getId());
 			}
-			boolean isNormal = (!startTime.after(planStartTime) && !endTime.after(planEndTime))
-					|| (!startTime.after(planStartTime) && endTime == null && !new Date().after(planEndTime));
+			boolean isNormal = false;
+			isNotNull = planStartTime != null && planEndTime != null && startTime != null && endTime == null;
+			if (isNotNull) {
+				isNormal = !startTime.after(planStartTime) && !endTime.after(planEndTime);
+			} else {
+				isNotNull = planStartTime != null && planEndTime != null && startTime != null;
+				if (isNotNull) {
+					isNormal = !startTime.after(planStartTime) && endTime == null && !new Date().after(planEndTime);
+				}
+			}
 			if (isNormal) {
 				normal.add(po.getId());
 			}

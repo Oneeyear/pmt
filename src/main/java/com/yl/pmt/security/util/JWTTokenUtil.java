@@ -1,7 +1,7 @@
 package com.yl.pmt.security.util;
 
 import com.alibaba.fastjson.JSON;
-import com.yl.pmt.security.config.JWTConfig;
+import com.yl.pmt.security.config.JwtConfig;
 import com.yl.pmt.security.pojo.SelfUser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -43,9 +43,9 @@ public class JWTTokenUtil {
                 // 自定义属性 放入用户拥有权限
                 .claim("authorities", JSON.toJSONString(selfUser.getAuthorities()))
                 // 失效时间
-                .setExpiration(new Date(System.currentTimeMillis() + JWTConfig.expiration))
+                .setExpiration(new Date(System.currentTimeMillis() + JwtConfig.expiration))
                 // 签名算法和密钥
-                .signWith(SignatureAlgorithm.HS512, JWTConfig.secret)
+                .signWith(SignatureAlgorithm.HS512, JwtConfig.secret)
                 .compact();
         return token;
     }

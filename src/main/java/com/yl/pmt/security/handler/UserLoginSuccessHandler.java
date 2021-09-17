@@ -1,7 +1,7 @@
 package com.yl.pmt.security.handler;
 
 import com.yl.pmt.result.BaseResponse;
-import com.yl.pmt.security.config.JWTConfig;
+import com.yl.pmt.security.config.JwtConfig;
 import com.yl.pmt.security.pojo.SelfUser;
 import com.yl.pmt.security.util.JWTTokenUtil;
 import com.yl.pmt.security.util.ResultUtil;
@@ -34,7 +34,7 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
 		// 组装JWT
 		SelfUser selfUser = (SelfUser) authentication.getPrincipal();
 		String token = JWTTokenUtil.createAccessToken(selfUser);
-		token = JWTConfig.tokenPrefix + token;
+		token = JwtConfig.tokenPrefix + token;
 		Map<String, String> map = new HashMap<>();
 		map.put("token", token);
 		// 封装返回参数

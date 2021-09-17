@@ -1,7 +1,7 @@
 package com.yl.pmt.security;
 
 import com.alibaba.fastjson.JSONObject;
-import com.yl.pmt.security.config.JWTConfig;
+import com.yl.pmt.security.config.JwtConfig;
 import com.yl.pmt.security.pojo.SelfUser;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -40,14 +40,14 @@ public class JwtAuthenticationTokenFilter extends BasicAuthenticationFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         // 获取请求头中JWT的Token
-        String tokenHeader = request.getHeader(JWTConfig.tokenHeader);
-        if (null!=tokenHeader && tokenHeader.startsWith(JWTConfig.tokenPrefix)) {
+        String tokenHeader = request.getHeader(JwtConfig.tokenHeader);
+        if (null!=tokenHeader && tokenHeader.startsWith(JwtConfig.tokenPrefix)) {
             try {
                 // 截取JWT前缀
-                String token = tokenHeader.replace(JWTConfig.tokenPrefix, "");
+                String token = tokenHeader.replace(JwtConfig.tokenPrefix, "");
                 // 解析JWT
                 Claims claims = Jwts.parser()
-                        .setSigningKey(JWTConfig.secret)
+                        .setSigningKey(JwtConfig.secret)
                         .parseClaimsJws(token)
                         .getBody();
                 // 获取用户名

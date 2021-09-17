@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Getter
 @Component
 @ConfigurationProperties(prefix = "jwt")
-public class JWTConfig {
+public class JwtConfig {
     /**
      * 密钥KEY
      */
@@ -36,22 +36,22 @@ public class JWTConfig {
 
 
     public void setSecret(String secret) {
-        this.secret = secret;
+        JwtConfig.secret = secret;
     }
 
     public void setTokenHeader(String tokenHeader) {
-        this.tokenHeader = tokenHeader;
+        JwtConfig.tokenHeader = tokenHeader;
     }
 
     public void setTokenPrefix(String tokenPrefix) {
-        this.tokenPrefix = tokenPrefix;
+        JwtConfig.tokenPrefix = tokenPrefix;
     }
 
     public void setExpiration(Integer expiration) {
-        this.expiration = expiration * 1000;
+        JwtConfig.expiration = expiration * 1000;
     }
 
     public void setAntMatchers(String antMatchers) {
-        this.antMatchers = antMatchers;
+        JwtConfig.antMatchers = antMatchers;
     }
 }

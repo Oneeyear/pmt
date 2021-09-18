@@ -35,4 +35,12 @@
             and area = #{area}
         </if>
     </select>
+
+    <select id="listUserCodes" resultType="java.lang.String">
+        select user_code
+        from sys_user_detail where id in
+        <foreach item='id' index='index' collection='ids' open='(' separator=',' close=')'>
+            #{id}
+        </foreach>
+    </select>
 </mapper>

@@ -5,6 +5,7 @@ import com.yl.pmt.security.pojo.Menu;
 import com.yl.pmt.security.pojo.Role;
 import com.yl.pmt.security.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -16,21 +17,27 @@ import java.util.List;
 @Mapper
 public interface UserMapper extends BaseMapper<User> {
 
-    /**
-     * 通过用户ID查询角色集合
-     * @Author pch
-     * @CreateTime 2020/9/18 18:01
-     * @Param  userId 用户ID
-     * @Return List<Role> 角色名集合
-     */
-    List<Role> selectSysRoleByUserCode(String userCode);
-    /**
-     * 通过用户ID查询权限集合
-     * @Author pch
-     * @CreateTime 2020/9/18 18:01
-     * @Param  userId 用户ID
-     * @Return List<Menu> 角色名集合
-     */
-    List<Menu> selectSysMenuByUserCode(String userCode);
+	/**
+	 * 通过用户ID查询角色集合
+	 *
+	 * @param userCode
+	 * @return
+	 */
+	List<Role> selectSysRoleByUserCode(String userCode);
 
+	/**
+	 * 通过用户ID查询权限集合
+	 *
+	 * @param userCode
+	 * @return
+	 */
+	List<Menu> selectSysMenuByUserCode(String userCode);
+
+	/**
+	 * 禁用账户
+	 *
+	 * @param userCodes
+	 * @return
+	 */
+	int removeUsers(@Param("userCodes") List<String> userCodes);
 }

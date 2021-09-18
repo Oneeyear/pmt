@@ -2,22 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.yl.pmt.security.mapper.UserMapper">
+    <!-- 查询用户的所有权限 -->
+    <select id="selectSysMenuByUserCode" resultType="com.yl.pmt.security.pojo.Menu" parameterType="java.lang.String">
+        SELECT DISTINCT m.*
+        FROM sys_user_role ur
+                     LEFT JOIN sys_role_menu rm ON ur.role_id = rm.role_id
+                     LEFT JOIN sys_menu m ON rm.menu_id = m.menu_id
+        WHERE ur.user_code = #{userCode,jdbcType=VARCHAR}
+    </select>
 
-	<!-- 查询用户的所有权限 -->
-	<select id="selectSysMenuByUserCode" resultType="com.yl.pmt.security.pojo.Menu" parameterType="java.lang.String">
-		SELECT DISTINCT m.* FROM sys_user_role ur
-			LEFT JOIN sys_role_menu rm ON ur.role_id = rm.role_id
-			LEFT JOIN sys_menu m ON rm.menu_id = m.menu_id
-		WHERE ur.user_code = #{userCode,jdbcType=VARCHAR}
-	</select>
+    <!-- 查询用户所有角色 -->
+    <select id="selectSysRoleByUserCode" resultType="com.yl.pmt.security.pojo.Role" parameterType="java.lang.String">
+        SELECT sr.*
+        FROM sys_role sr
+                     LEFT JOIN sys_user_role se ON se.role_id = sr.role_id
+        WHERE se.user_code = #{userCode,jdbcType=VARCHAR}
+    </select>
 
-	<!-- 查询用户所有角色 -->
-	<select id="selectSysRoleByUserCode" resultType="com.yl.pmt.security.pojo.Role" parameterType="java.lang.String">
-		SELECT sr.* FROM sys_role sr
-		LEFT JOIN sys_user_role se ON se.role_id = sr.role_id
-		WHERE se.user_code = #{userCode,jdbcType=VARCHAR}
-	</select>
-
-
-
+    <update id="removeUsers">
+        update sys_user
+        set status = 'PROHIBIT' where user_code in
+        <foreach item='userCode' index='index' collection='userCodes' open='(' separator=',' close=')'>
+            #{userCode}
+        </foreach>
+    </update>
 </mapper>

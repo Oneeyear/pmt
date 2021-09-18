@@ -1,6 +1,7 @@
 package com.yl.pmt.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yl.pmt.exception.BusinessException;
 import com.yl.pmt.mapper.DemandMapper;
@@ -17,7 +18,6 @@ import com.yl.pmt.service.IUserDetailService;
 import com.yl.pmt.util.CnToPyUtil;
 import com.yl.pmt.util.EntityConvertUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -80,6 +80,8 @@ public class UserDetailService extends ServiceImpl<UserDetailMapper, UserDetailP
 		int df = userDetailMapper.insert(po);
 		User user = new User();
 		String account = CnToPyUtil.getPingYin(name);
+		// 账号重复性校验
+		account = queryAccount(account);
 		String password = CnToPyUtil.getPinYinHeadChar(name) + 123456;
 		// 密码加密
 		String scPassword = new BCryptPasswordEncoder().encode(password);
@@ -92,7 +94,7 @@ public class UserDetailService extends ServiceImpl<UserDetailMapper, UserDetailP
 		// 用户角色表
 		UserRole userRole = new UserRole();
 		userRole.setUserCode(userCode);
-		userRole.setRoleId(1L);
+		userRole.setRoleId(2L);
 		int rf = userRoleMapper.insert(userRole);
 
 		if (df == 0 || uf == 0 || rf == 0) {
@@ -103,6 +105,25 @@ public class UserDetailService extends ServiceImpl<UserDetailMapper, UserDetailP
 		builder.append("，密码为");
 		builder.append(password);
 		return builder.toString();
+	}
+
+	/**
+	 * 查询账号是否重复
+	 * @param account
+	 * @return
+	 */
+	private String queryAccount(String account) {
+		QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+		queryWrapper.eq("account", account);
+		List<User> list = userMapper.selectList(queryWrapper);
+		if (!CollectionUtils.isEmpty(list)) {
+			if (account.length() > 50) {
+				return account + "7";
+			}
+			account = account + "6";
+			account = queryAccount(account);
+		}
+		return account;
 	}
 
 	/**
@@ -123,13 +144,21 @@ public class UserDetailService extends ServiceImpl<UserDetailMapper, UserDetailP
 	 * @param ids
 	 */
 	@Override
+	@Transactional(rollbackFor = Exception.class)
 	public void delUsers(List<Integer> ids) {
 		Optional.ofNullable(ids).orElseThrow(() -> new BusinessException("传入数据为空！"));
 		Long count = demandMapper.countDemandByIds(ids);
 		if (count > 0) {
 			throw new BusinessException("待删除用户中有关联需求，请先删除需求再对人员进行删除！");
 		}
-		userDetailMapper.removeUsers(ids);
+		List<String> userCodes = userDetailMapper.listUserCodes(ids);
+		// 禁用账户
+		int ru = userMapper.removeUsers(userCodes);
+		// 移除账户
+		int rd = userDetailMapper.removeUsers(ids);
+		if (ru == 0 || rd == 0){
+			throw new BusinessException("删除失败！");
+		}
 	}
 
 	/**

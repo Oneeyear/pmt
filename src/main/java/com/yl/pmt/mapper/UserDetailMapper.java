@@ -23,8 +23,9 @@ public interface UserDetailMapper extends BaseMapper<UserDetailPo> {
 	 * 删除人员
 	 *
 	 * @param ids
+	 * @return
 	 */
-	void removeUsers(@Param("ids") List<Integer> ids);
+	int removeUsers(@Param("ids") List<Integer> ids);
 
 	/**
 	 * 查询人员
@@ -33,4 +34,12 @@ public interface UserDetailMapper extends BaseMapper<UserDetailPo> {
 	 * @return
 	 */
 	List<UserDetailPo> selectUserList(DemandQueryDto dto);
+
+	/**
+	 * 查询用户编码
+	 *
+	 * @param ids
+	 * @return
+	 */
+	List<String> listUserCodes(@Param("ids") List<Integer> ids);
 }

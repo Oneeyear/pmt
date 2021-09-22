@@ -1,5 +1,6 @@
 package com.yl.pmt.pojo.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -19,10 +20,16 @@ import java.util.Date;
 public class DemandQueryDto {
 
 	/**
-	 * 用户ID
+	 * 用户唯一标识
 	 */
-	@ApiModelProperty(value = "用户ID")
-	private Integer userId;
+	@ApiModelProperty(value = "用户唯一标识")
+	private String userCode;
+
+	/**
+	 * 用户名
+	 */
+	@ApiModelProperty(value = "用户名")
+	private String name;
 
 	/**
 	 * 需求

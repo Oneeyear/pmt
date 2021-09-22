@@ -9,10 +9,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -37,7 +34,7 @@ public class DemandController extends BaseResponse {
 	 * @return
 	 */
 	@ApiOperation(value = "新增需求", notes = "新增需求")
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	@RequestMapping(value = "/add", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
 	public ResponseData add(@Validated DemandDto dto) {
 		demandService.addDemand(dto);
 		return success("新增成功！");

@@ -1,7 +1,6 @@
 package com.yl.pmt.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yl.pmt.exception.BusinessException;
 import com.yl.pmt.mapper.DemandMapper;
@@ -58,17 +57,9 @@ public class UserDetailService extends ServiceImpl<UserDetailMapper, UserDetailP
 	@Override
 	@Transactional(rollbackFor = Exception.class)
 	public String addUser(UserDetailDto dto) {
-		// 非空判断
-		Optional.ofNullable(dto).orElseThrow(() -> new BusinessException("用户信息不能为空！"));
-		UserDetailPo po = (UserDetailPo) EntityConvertUtil.convert(dto, "Po");
-		// 姓名重复判断
-		String name = Optional.ofNullable(po.getName()).orElseThrow(() -> new BusinessException("用户名不能为空！"));
-		QueryWrapper<UserDetailPo> queryWrapper = new QueryWrapper<>();
-		queryWrapper.eq("name", name).eq("logic_state", "Y");
-		List<UserDetailPo> pos = this.list(queryWrapper);
-		if (!CollectionUtils.isEmpty(pos)) {
-			throw new BusinessException("用户名已存在！");
-		}
+		// 校验用户数据
+		UserDetailPo po = checkUserInfo(dto);
+		String name = po.getName();
 		// 生成用户编码
 		String userCode = "pmt-" + UUID.randomUUID();
 		// 保存操作
@@ -109,6 +100,7 @@ public class UserDetailService extends ServiceImpl<UserDetailMapper, UserDetailP
 
 	/**
 	 * 查询账号是否重复
+	 *
 	 * @param account
 	 * @return
 	 */
@@ -147,16 +139,16 @@ public class UserDetailService extends ServiceImpl<UserDetailMapper, UserDetailP
 	@Transactional(rollbackFor = Exception.class)
 	public void delUsers(List<Integer> ids) {
 		Optional.ofNullable(ids).orElseThrow(() -> new BusinessException("传入数据为空！"));
-		Long count = demandMapper.countDemandByIds(ids);
+		List<String> userCodes = userDetailMapper.listUserCodes(ids);
+		Long count = demandMapper.countDemandByUserCode(userCodes);
 		if (count > 0) {
 			throw new BusinessException("待删除用户中有关联需求，请先删除需求再对人员进行删除！");
 		}
-		List<String> userCodes = userDetailMapper.listUserCodes(ids);
 		// 禁用账户
 		int ru = userMapper.removeUsers(userCodes);
 		// 移除账户
 		int rd = userDetailMapper.removeUsers(ids);
-		if (ru == 0 || rd == 0){
+		if (ru == 0 || rd == 0) {
 			throw new BusinessException("删除失败！");
 		}
 	}
@@ -175,5 +167,40 @@ public class UserDetailService extends ServiceImpl<UserDetailMapper, UserDetailP
 		Optional.ofNullable(pos).orElseThrow(() -> new BusinessException("用户数据为空！"));
 		UserDetailVo vo = (UserDetailVo) EntityConvertUtil.convert(pos.get(0), "Vo");
 		return vo;
+	}
+
+	/**
+	 * 修改用户信息
+	 *
+	 * @param dto
+	 */
+	@Override
+	public void edit(UserDetailDto dto) {
+		// 校验用户信息
+		UserDetailPo po = checkUserInfo(dto);
+		po.setModifyUser(SecurityUtil.getAccount());
+		po.setModifyTime(new Date());
+		userDetailMapper.updateById(po);
+	}
+
+	/**
+	 * 用户信息校验
+	 *
+	 * @param dto
+	 * @return
+	 */
+	UserDetailPo checkUserInfo(UserDetailDto dto) {
+		// 非空判断
+		Optional.ofNullable(dto).orElseThrow(() -> new BusinessException("用户信息不能为空！"));
+		UserDetailPo po = (UserDetailPo) EntityConvertUtil.convert(dto, "Po");
+		// 姓名重复判断
+		String name = Optional.ofNullable(po.getName()).orElseThrow(() -> new BusinessException("用户名不能为空！"));
+		QueryWrapper<UserDetailPo> queryWrapper = new QueryWrapper<>();
+		queryWrapper.eq("name", name).eq("logic_state", "Y");
+		List<UserDetailPo> pos = this.list(queryWrapper);
+		if (!CollectionUtils.isEmpty(pos)) {
+			throw new BusinessException("用户名已存在！");
+		}
+		return po;
 	}
 }

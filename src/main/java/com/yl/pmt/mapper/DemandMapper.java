@@ -45,8 +45,8 @@ public interface DemandMapper extends BaseMapper<DemandPo> {
 	/**
 	 * 查询用户名下需求数目
 	 *
-	 * @param userIds
+	 * @param userCodes
 	 * @return
 	 */
-	Long countDemandByIds(@Param("userIds") List<Integer> userIds);
+	Long countDemandByUserCode(@Param("userCodes") List<String> userCodes);
 }

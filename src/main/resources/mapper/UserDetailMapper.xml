@@ -17,6 +17,7 @@
         name as name,
         dept as dept,
         area as area,
+        user_code as userCode,
         remark as remark,
         logic_state as logicState,
         create_user as createUser,
@@ -25,8 +26,11 @@
         modify_time as modifyTime
         from sys_user_detail
         where logic_state = 'Y'
-        <if test="userId != null and userId != ''">
-            and id = #{userId}
+        <if test="name != null and name != ''">
+            and name like CONCAT('%', #{name}, '%')
+        </if>
+        <if test="userCode != null and userCode != ''">
+            and user_code = #{userCode}
         </if>
         <if test="dept != null and dept != ''">
             and dept = #{dept}

@@ -44,4 +44,11 @@ public interface IUserDetailService extends IService<UserDetailPo> {
 	 * @return
 	 */
 	UserDetailVo getUserInfo();
+
+	/**
+	 * 修改用户信息
+	 *
+	 * @param dto
+	 */
+	void edit(UserDetailDto dto);
 }

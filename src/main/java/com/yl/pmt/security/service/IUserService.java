@@ -27,7 +27,7 @@ public interface IUserService extends IService<User>  {
      * 根据用户ID查询角色集合
      * @Author pch
      * @CreateTime 2020/9/18 18:01
-     * @Param  userId 用户ID
+     * @Param  userCode 用户唯一标识
      * @Return List<Role> 角色名集合
      */
     List<Role> selectSysRoleByUserCode(String userCode);
@@ -35,7 +35,7 @@ public interface IUserService extends IService<User>  {
      * 根据用户ID查询权限集合
      * @Author pch
      * @CreateTime 2020/9/18 18:01
-     * @Param  userId 用户ID
+     * @Param  userCode 用户唯一标识
      * @Return List<Menu> 角色名集合
      */
     List<Menu> selectSysMenuByUserCode(String userCode);

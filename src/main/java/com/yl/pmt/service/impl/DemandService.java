@@ -80,15 +80,15 @@ public class DemandService extends ServiceImpl<DemandMapper, DemandPo> implement
 		// 当传入值为空时查询全部
 		dto = Optional.ofNullable(dto).orElseGet(() -> new DemandQueryDto());
 		List<DemandPo> demandPos = demandMapper.selectDemandList(dto);
-		Map<Integer, List<DemandPo>> updateGroupMap = demandPos.stream().collect(Collectors.groupingBy(DemandPo::getUserId));
+		Map<String, List<DemandPo>> updateGroupMap = demandPos.stream().collect(Collectors.groupingBy(DemandPo::getUserCode));
 		// 查询人员
 		List<UserDetailPo> userDetailPos = userDetailMapper.selectUserList(dto);
 		List<Map<String, Object>> list = new ArrayList<>();
 		userDetailPos.forEach(items -> {
 			Map<String, Object> map = MapBeanUtil.object2Map(items);
-			Integer id = items.getId();
+			String userCode = items.getUserCode();
 			// 不为空
-			map.put("demands", updateGroupMap.get(id));
+			map.put("demands", updateGroupMap.get(userCode));
 			list.add(map);
 		});
 		return list;

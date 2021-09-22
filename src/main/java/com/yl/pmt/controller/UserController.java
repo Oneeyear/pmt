@@ -83,4 +83,18 @@ public class UserController extends BaseResponse {
 		return success("用户端信息", vo);
 	}
 
+	/**
+	 * 修改用户
+	 *
+	 * @return
+	 * @author pch
+	 * @CreateTime 2021/6/2 14:52
+	 */
+	@ApiOperation(value = "获取用户信息")
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	public ResponseData edit(UserDetailDto dto) {
+		userService.edit(dto);
+		return success("修改成功！");
+	}
+
 }

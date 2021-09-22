@@ -19,40 +19,38 @@ import java.util.List;
 @Service("sysUserService")
 public class UserService extends ServiceImpl<UserMapper, User> implements IUserService {
 
-    /**
-     * 根据用户名查询实体
-     * @Author pch
-     * @CreateTime 2020/9/14 16:30
-     * @Param  account 用户名
-     * @Return User 用户实体
-     */
-    @Override
-    public User selectUserByAccount(String account) {
-        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.lambda().eq(User::getAccount,account);
-        return this.baseMapper.selectOne(queryWrapper);
-    }
-    /**
-     * 通过用户ID查询角色集合
-     * @Author pch
-     * @CreateTime 2020/9/18 18:01
-     * @Param  userId 用户ID
-     * @Return List<Role> 角色名集合
-     */
-    @Override
-    public List<Role> selectSysRoleByUserCode(String userCode) {
-        return this.baseMapper.selectSysRoleByUserCode(userCode);
-    }
+	/**
+	 * 根据用户名查询实体
+	 *
+	 * @param account
+	 * @return
+	 */
+	@Override
+	public User selectUserByAccount(String account) {
+		QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+		queryWrapper.lambda().eq(User::getAccount, account);
+		return this.baseMapper.selectOne(queryWrapper);
+	}
 
-    /**
-     * 根据用户ID查询权限集合
-     * @Author pch
-     * @CreateTime 2020/9/18 18:01
-     * @Param userId 用户ID
-     * @Return List<Menu> 角色名集合
-     */
-    @Override
-    public List<Menu> selectSysMenuByUserCode(String userCode) {
-        return this.baseMapper.selectSysMenuByUserCode(userCode);
-    }
+	/**
+	 * 通过用户ID查询角色集合
+	 *
+	 * @param userCode
+	 * @return
+	 */
+	@Override
+	public List<Role> selectSysRoleByUserCode(String userCode) {
+		return this.baseMapper.selectSysRoleByUserCode(userCode);
+	}
+
+	/**
+	 * 根据用户ID查询权限集合
+	 *
+	 * @param userCode
+	 * @return
+	 */
+	@Override
+	public List<Menu> selectSysMenuByUserCode(String userCode) {
+		return this.baseMapper.selectSysMenuByUserCode(userCode);
+	}
 }

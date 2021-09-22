@@ -14,7 +14,7 @@
 
     <select id="selectDemandList" resultType="com.yl.pmt.pojo.po.DemandPo">
         select id as id,
-        user_id as userId,
+        user_code as userCode,
         demand as demand,
         demand_type as demandType,
         plan_start_time as planStartTime,
@@ -33,8 +33,8 @@
         modify_time as modifyTime
         from demand
         where logic_state = 'Y'
-        <if test="userId != null and userId != ''">
-            and user_id = #{userId}
+        <if test="userCode != null and userCode != ''">
+            and user_code = #{userCode}
         </if>
         <if test="demand != null and demand != ''">
             and demand like CONCAT('%', #{demand}, '%')
@@ -46,7 +46,7 @@
             and start_time <![CDATA[>=]]> #{startTime}
         </if>
         <if test="endTime != null and endTime != ''">
-            and end_time <![CDATA[<=]]> #{endTime}
+            and start_time <![CDATA[<=]]> #{endTime}
         </if>
         <if test="status != null and status != ''">
             and status = #{status}
@@ -62,13 +62,13 @@
         </foreach>
     </delete>
 
-    <select id="countDemandByIds" resultType="java.lang.Long">
+    <select id="countDemandByUserCode" resultType="java.lang.Long">
         select count(*)
         from demand where logic_state = 'Y'
         and status != 'finish'
-        and user_id in
-        <foreach item='id' index='index' collection='userIds' open='(' separator=',' close=')'>
-            #{id}
+        and user_code in
+        <foreach item='userCode' index='index' collection='userCodes' open='(' separator=',' close=')'>
+            #{userCode}
         </foreach>
     </select>
 </mapper>

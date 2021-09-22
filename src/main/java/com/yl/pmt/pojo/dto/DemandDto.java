@@ -1,5 +1,6 @@
 package com.yl.pmt.pojo.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -26,11 +27,11 @@ public class DemandDto extends BaseDto {
 	private Integer id;
 
 	/**
-	 * 用户ID
+	 * 用户唯一标识
 	 */
-	@NotNull(message = "用户ID不能为空")
-	@ApiModelProperty(value = "用户ID")
-	private Integer userId;
+	@NotEmpty(message = "用户唯一标识不能为空")
+	@ApiModelProperty(value = "用户唯一标识")
+	private String userCode;
 
 	/**
 	 * 需求
@@ -50,6 +51,7 @@ public class DemandDto extends BaseDto {
 	 * 计划开始时间
 	 */
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
 	@ApiModelProperty(value = "计划开始时间")
 	private Date planStartTime;
 
@@ -57,6 +59,7 @@ public class DemandDto extends BaseDto {
 	 * 计划结束时间
 	 */
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
 	@ApiModelProperty(value = "计划结束时间")
 	private Date planEndTime;
 
@@ -64,6 +67,7 @@ public class DemandDto extends BaseDto {
 	 * 计划提测时间
 	 */
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
 	@ApiModelProperty(value = "计划提测时间")
 	private Date planTestTime;
 
@@ -71,6 +75,7 @@ public class DemandDto extends BaseDto {
 	 * 计划上线时间
 	 */
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
 	@ApiModelProperty(value = "计划上线时间")
 	private Date planOnlineTime;
 
@@ -78,6 +83,7 @@ public class DemandDto extends BaseDto {
 	 * 实际开始时间
 	 */
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
 	@ApiModelProperty(value = "实际开始时间")
 	private Date startTime;
 
@@ -85,6 +91,7 @@ public class DemandDto extends BaseDto {
 	 * 实际结束时间
 	 */
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
 	@ApiModelProperty(value = "实际结束时间")
 	private Date endTime;
 
@@ -92,6 +99,7 @@ public class DemandDto extends BaseDto {
 	 * 实际提测时间
 	 */
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
 	@ApiModelProperty(value = "实际提测时间")
 	private Date testTime;
 

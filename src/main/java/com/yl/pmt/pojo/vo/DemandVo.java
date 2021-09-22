@@ -19,9 +19,9 @@ public class DemandVo extends BaseVo {
 	private Integer id;
 
 	/**
-	 * 用户ID
+	 * 用户唯一标识
 	 */
-	private Integer userId;
+	private String userCode;
 
 	/**
 	 * 需求

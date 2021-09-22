@@ -26,13 +26,6 @@ public class SecurityUtil {
 	}
 
 	/**
-	 * 获取当前用户ID
-	 */
-	public static Long getUserId() {
-		return getUserInfo().getUserId();
-	}
-
-	/**
 	 * 获取当前用户账号
 	 */
 	public static String getUserName() {

@@ -1,12 +1,14 @@
 package com.yl.pmt.pojo.po;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.util.Collection;
 import java.util.Date;
 
 /**
@@ -91,5 +93,11 @@ public class DemandPo extends BasePo {
 	 * 状态 normal-正常 delay-延期 suspend-挂起 finish-完成
 	 */
 	private String status;
+
+	/**
+	 * 需求完成状态
+	 */
+	@TableField(exist = false)
+	private Collection<DemandDetailPo> demandDetail;
 
 }

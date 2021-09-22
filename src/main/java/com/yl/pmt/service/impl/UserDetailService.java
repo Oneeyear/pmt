@@ -1,11 +1,13 @@
 package com.yl.pmt.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yl.pmt.exception.BusinessException;
 import com.yl.pmt.mapper.DemandMapper;
 import com.yl.pmt.mapper.UserDetailMapper;
 import com.yl.pmt.pojo.dto.UserDetailDto;
+import com.yl.pmt.pojo.po.DemandPo;
 import com.yl.pmt.pojo.po.UserDetailPo;
 import com.yl.pmt.pojo.vo.UserDetailVo;
 import com.yl.pmt.security.mapper.UserMapper;
@@ -106,7 +108,7 @@ public class UserDetailService extends ServiceImpl<UserDetailMapper, UserDetailP
 	 */
 	private String queryAccount(String account) {
 		QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-		queryWrapper.eq("account", account);
+		queryWrapper.lambda().eq(User::getAccount, account);
 		List<User> list = userMapper.selectList(queryWrapper);
 		if (!CollectionUtils.isEmpty(list)) {
 			if (account.length() > 50) {
@@ -126,7 +128,7 @@ public class UserDetailService extends ServiceImpl<UserDetailMapper, UserDetailP
 	@Override
 	public List<UserDetailPo> listUsers() {
 		QueryWrapper<UserDetailPo> queryWrapper = new QueryWrapper<>();
-		queryWrapper.eq("logic_state", "Y");
+		queryWrapper.lambda().eq(UserDetailPo::getLogicState, "Y");
 		return this.list(queryWrapper);
 	}
 
@@ -140,15 +142,25 @@ public class UserDetailService extends ServiceImpl<UserDetailMapper, UserDetailP
 	public void delUsers(List<Integer> ids) {
 		Optional.ofNullable(ids).orElseThrow(() -> new BusinessException("传入数据为空！"));
 		List<String> userCodes = userDetailMapper.listUserCodes(ids);
-		Long count = demandMapper.countDemandByUserCode(userCodes);
+		QueryWrapper<DemandPo> queryWrapper = new QueryWrapper<>();
+		queryWrapper.lambda().eq(DemandPo::getLogicState, "Y").in(DemandPo::getUserCode, userCodes);
+		Integer count = demandMapper.selectCount(queryWrapper);
 		if (count > 0) {
 			throw new BusinessException("待删除用户中有关联需求，请先删除需求再对人员进行删除！");
 		}
 		// 禁用账户
-		int ru = userMapper.removeUsers(userCodes);
+		UpdateWrapper<User> updateUser = new UpdateWrapper<>();
+		updateUser.lambda().set(User::getStatus, "PROHIBIT")
+				.in(User::getUserCode, userCodes);
+		int ru = userMapper.update(null, updateUser);
+		UpdateWrapper<UserDetailPo> updateUserDetail = new UpdateWrapper<>();
+		updateUserDetail.lambda().set(UserDetailPo::getLogicState, "N")
+				.set(UserDetailPo::getModifyUser, SecurityUtil.getUserName())
+				.set(UserDetailPo::getModifyTime, new Date())
+				.in(UserDetailPo::getId, ids);
 		// 移除账户
-		int rd = userDetailMapper.removeUsers(ids);
-		if (ru == 0 || rd == 0) {
+		int rd = userDetailMapper.update(null, updateUserDetail);
+		if (ru == 0 && rd == 0) {
 			throw new BusinessException("删除失败！");
 		}
 	}
@@ -162,7 +174,7 @@ public class UserDetailService extends ServiceImpl<UserDetailMapper, UserDetailP
 	public UserDetailVo getUserInfo() {
 		String userCode = SecurityUtil.getUserCode();
 		QueryWrapper<UserDetailPo> queryWrapper = new QueryWrapper<>();
-		queryWrapper.eq("user_code", userCode);
+		queryWrapper.lambda().eq(UserDetailPo::getUserCode, userCode);
 		List<UserDetailPo> pos = userDetailMapper.selectList(queryWrapper);
 		Optional.ofNullable(pos).orElseThrow(() -> new BusinessException("用户数据为空！"));
 		UserDetailVo vo = (UserDetailVo) EntityConvertUtil.convert(pos.get(0), "Vo");
@@ -196,7 +208,7 @@ public class UserDetailService extends ServiceImpl<UserDetailMapper, UserDetailP
 		// 姓名重复判断
 		String name = Optional.ofNullable(po.getName()).orElseThrow(() -> new BusinessException("用户名不能为空！"));
 		QueryWrapper<UserDetailPo> queryWrapper = new QueryWrapper<>();
-		queryWrapper.eq("name", name).eq("logic_state", "Y");
+		queryWrapper.lambda().eq(UserDetailPo::getName, name).eq(UserDetailPo::getLogicState, "Y");
 		List<UserDetailPo> pos = this.list(queryWrapper);
 		if (!CollectionUtils.isEmpty(pos)) {
 			throw new BusinessException("用户名已存在！");

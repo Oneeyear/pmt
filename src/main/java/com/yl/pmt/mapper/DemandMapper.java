@@ -23,8 +23,11 @@ public interface DemandMapper extends BaseMapper<DemandPo> {
 	 * 删除需求
 	 *
 	 * @param ids
+	 * @param modifyUser
+	 * @return
 	 */
-	void removeDemands(@Param("ids") List<Integer> ids);
+	@Deprecated
+	int removeDemands(@Param("ids") List<Integer> ids, @Param("modifyUser") String modifyUser);
 
 	/**
 	 * 查询需求
@@ -40,6 +43,7 @@ public interface DemandMapper extends BaseMapper<DemandPo> {
 	 * @param ids
 	 * @param status
 	 */
+	@Deprecated
 	void updateDemandStatus(@Param("ids") List<Integer> ids, @Param("status") String status);
 
 	/**
@@ -48,5 +52,6 @@ public interface DemandMapper extends BaseMapper<DemandPo> {
 	 * @param userCodes
 	 * @return
 	 */
+	@Deprecated
 	Long countDemandByUserCode(@Param("userCodes") List<String> userCodes);
 }

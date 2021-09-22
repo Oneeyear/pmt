@@ -5,6 +5,7 @@
     <update id="removeDemands">
         update demand
         set modify_time = now(),
+        modify_user = #{modifyUser},
         logic_state = 'N'
         where id in
         <foreach item='id' index='index' collection='ids' open='(' separator=',' close=')'>

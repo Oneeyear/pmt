@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 /**
  * 权限mapper
+ *
  * @Author pch
  * @CreateTime 2020/9/14 15:57
  */

@@ -1,13 +1,10 @@
 package com.yl.pmt.pojo.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotEmpty;
-import java.util.Date;
 
 /**
  * 需求查询传入参数

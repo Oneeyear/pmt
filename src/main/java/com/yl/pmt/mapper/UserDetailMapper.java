@@ -25,6 +25,7 @@ public interface UserDetailMapper extends BaseMapper<UserDetailPo> {
 	 * @param ids
 	 * @return
 	 */
+	@Deprecated
 	int removeUsers(@Param("ids") List<Integer> ids);
 
 	/**

@@ -10,18 +10,20 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * 用户未登录处理类
+ *
  * @Author pch
  * @CreateTime 2020/10/3 8:55
  */
 @Component
 public class UserAuthenticationEntryPointHandler implements AuthenticationEntryPoint {
-    /**
-     * 用户未登录返回结果
-     * @Author pch
-     * @CreateTime 2020/10/3 9:01
-     */
-    @Override
-    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception){
-        ResultUtil.responseJson(response,ResultUtil.resultCode(401,"未登录"));
-    }
+	/**
+	 * 用户未登录返回结果
+	 *
+	 * @Author pch
+	 * @CreateTime 2020/10/3 9:01
+	 */
+	@Override
+	public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) {
+		ResultUtil.responseJson(response, ResultUtil.resultCode(401, "未登录"));
+	}
 }

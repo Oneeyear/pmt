@@ -27,59 +27,60 @@ import java.util.Map;
 /**
  * JWT接口请求校验拦截器
  * 请求接口时会进入这里验证Token是否合法和过期
+ *
  * @Author pch
  * @CreateTime 2020/10/5 16:41
  */
 @Slf4j
 public class JwtAuthenticationTokenFilter extends BasicAuthenticationFilter {
 
-    public JwtAuthenticationTokenFilter(AuthenticationManager authenticationManager) {
-        super(authenticationManager);
-    }
+	public JwtAuthenticationTokenFilter(AuthenticationManager authenticationManager) {
+		super(authenticationManager);
+	}
 
-    @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        // 获取请求头中JWT的Token
-        String tokenHeader = request.getHeader(JwtConfig.tokenHeader);
-        if (null!=tokenHeader && tokenHeader.startsWith(JwtConfig.tokenPrefix)) {
-            try {
-                // 截取JWT前缀
-                String token = tokenHeader.replace(JwtConfig.tokenPrefix, "");
-                // 解析JWT
-                Claims claims = Jwts.parser()
-                        .setSigningKey(JwtConfig.secret)
-                        .parseClaimsJws(token)
-                        .getBody();
-                // 获取用户名
-                String account = claims.getSubject();
-                String userCode = claims.getId();
-                if(!StringUtils.isEmpty(account)&&!StringUtils.isEmpty(userCode)) {
-                    // 获取角色
-                    List<GrantedAuthority> authorities = new ArrayList<>();
-                    String authority = claims.get("authorities").toString();
-                    if(!StringUtils.isEmpty(authority)){
-                        List<Map<String,String>> authorityMap = JSONObject.parseObject(authority, List.class);
-                        for(Map<String,String> role : authorityMap){
-                            if(!StringUtils.isEmpty(role)) {
-                                authorities.add(new SimpleGrantedAuthority(role.get("authority")));
-                            }
-                        }
-                    }
-                    //组装参数
-                    SelfUser selfUser = new SelfUser();
-                    selfUser.setAccount(claims.getSubject());
-                    selfUser.setUserCode(claims.getId());
-                    selfUser.setAuthorities(authorities);
-                    UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(selfUser, userCode, authorities);
-                    SecurityContextHolder.getContext().setAuthentication(authentication);
-                }
-            } catch (ExpiredJwtException e){
-                log.info("Token过期");
-            } catch (Exception e) {
-                log.info("Token无效");
-            }
-        }
-        filterChain.doFilter(request, response);
-        return;
-    }
+	@Override
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+		// 获取请求头中JWT的Token
+		String tokenHeader = request.getHeader(JwtConfig.tokenHeader);
+		if (null != tokenHeader && tokenHeader.startsWith(JwtConfig.tokenPrefix)) {
+			try {
+				// 截取JWT前缀
+				String token = tokenHeader.replace(JwtConfig.tokenPrefix, "");
+				// 解析JWT
+				Claims claims = Jwts.parser()
+						.setSigningKey(JwtConfig.secret)
+						.parseClaimsJws(token)
+						.getBody();
+				// 获取用户名
+				String account = claims.getSubject();
+				String userCode = claims.getId();
+				if (!StringUtils.isEmpty(account) && !StringUtils.isEmpty(userCode)) {
+					// 获取角色
+					List<GrantedAuthority> authorities = new ArrayList<>();
+					String authority = claims.get("authorities").toString();
+					if (!StringUtils.isEmpty(authority)) {
+						List<Map<String, String>> authorityMap = JSONObject.parseObject(authority, List.class);
+						for (Map<String, String> role : authorityMap) {
+							if (!StringUtils.isEmpty(role)) {
+								authorities.add(new SimpleGrantedAuthority(role.get("authority")));
+							}
+						}
+					}
+					//组装参数
+					SelfUser selfUser = new SelfUser();
+					selfUser.setAccount(claims.getSubject());
+					selfUser.setUserCode(claims.getId());
+					selfUser.setAuthorities(authorities);
+					UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(selfUser, userCode, authorities);
+					SecurityContextHolder.getContext().setAuthentication(authentication);
+				}
+			} catch (ExpiredJwtException e) {
+				log.info("Token过期");
+			} catch (Exception e) {
+				log.info("Token无效");
+			}
+		}
+		filterChain.doFilter(request, response);
+		return;
+	}
 }

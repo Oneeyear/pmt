@@ -20,26 +20,27 @@ import javax.servlet.http.HttpServletResponse;
 @Slf4j
 @Component
 public class UserLoginFailureHandler implements AuthenticationFailureHandler {
-    /**
-     * 登录失败返回结果
-     * @Author pch
-     * @CreateTime 2020/10/3 9:12
-     */
-    @Override
-    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception){
-        // 这些对于操作的处理类可以根据不同异常进行不同处理
-        if (exception instanceof UsernameNotFoundException){
-            log.info("【登录失败】"+exception.getMessage());
-            ResultUtil.responseJson(response,ResultUtil.resultCode(500,"用户名不存在"));
-        }
-        if (exception instanceof LockedException){
-            log.info("【登录失败】"+exception.getMessage());
-            ResultUtil.responseJson(response,ResultUtil.resultCode(500,"用户被冻结"));
-        }
-        if (exception instanceof BadCredentialsException){
-            log.info("【登录失败】"+exception.getMessage());
-            ResultUtil.responseJson(response,ResultUtil.resultCode(500,"用户名密码不正确"));
-        }
-        ResultUtil.responseJson(response,ResultUtil.resultCode(500,"登录失败"));
-    }
+	/**
+	 * 登录失败返回结果
+	 *
+	 * @Author pch
+	 * @CreateTime 2020/10/3 9:12
+	 */
+	@Override
+	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) {
+		// 这些对于操作的处理类可以根据不同异常进行不同处理
+		if (exception instanceof UsernameNotFoundException) {
+			log.info("【登录失败】" + exception.getMessage());
+			ResultUtil.responseJson(response, ResultUtil.resultCode(500, "用户名不存在"));
+		}
+		if (exception instanceof LockedException) {
+			log.info("【登录失败】" + exception.getMessage());
+			ResultUtil.responseJson(response, ResultUtil.resultCode(500, "用户被冻结"));
+		}
+		if (exception instanceof BadCredentialsException) {
+			log.info("【登录失败】" + exception.getMessage());
+			ResultUtil.responseJson(response, ResultUtil.resultCode(500, "用户名密码不正确"));
+		}
+		ResultUtil.responseJson(response, ResultUtil.resultCode(500, "登录失败"));
+	}
 }

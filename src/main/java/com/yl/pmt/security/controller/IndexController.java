@@ -10,6 +10,7 @@ import java.util.Map;
 
 /**
  * 初始页面
+ *
  * @Author pch
  * @CreateTime 2020/10/2 15:11
  */
@@ -18,18 +19,19 @@ import java.util.Map;
 public class IndexController {
 
 
-    /**
-     * 首页
-     * @Author pch
-     * @CreateTime 2020/10/2 15:23
-     * @Return Map<String,Object> 返回数据MAP
-     */
-    @RequestMapping(value = "/info",method = RequestMethod.GET)
-    public Map<String,Object> userLogin(){
-        // 组装参数
-        Map<String,Object> result = new HashMap<>();
-        result.put("title","这里是首页不需要权限和登录拦截");
-        return ResultUtil.resultSuccess(result);
-    }
+	/**
+	 * 首页
+	 *
+	 * @Author pch
+	 * @CreateTime 2020/10/2 15:23
+	 * @Return Map<String, Object> 返回数据MAP
+	 */
+	@RequestMapping(value = "/info", method = RequestMethod.GET)
+	public Map<String, Object> userLogin() {
+		// 组装参数
+		Map<String, Object> result = new HashMap<>();
+		result.put("title", "这里是首页不需要权限和登录拦截");
+		return ResultUtil.resultSuccess(result);
+	}
 
 }

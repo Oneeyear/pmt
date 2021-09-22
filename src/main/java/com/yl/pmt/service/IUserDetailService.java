@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.yl.pmt.pojo.dto.UserDetailDto;
 import com.yl.pmt.pojo.po.UserDetailPo;
 import com.yl.pmt.pojo.vo.UserDetailVo;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.List;
 

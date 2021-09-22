@@ -39,5 +39,6 @@ public interface UserMapper extends BaseMapper<User> {
 	 * @param userCodes
 	 * @return
 	 */
+	@Deprecated
 	int removeUsers(@Param("userCodes") List<String> userCodes);
 }

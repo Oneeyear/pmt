@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 /**
  * 系统用户实体
+ *
  * @Author pch
  * @CreateTime 2020/9/14 15:57
  */

@@ -109,7 +109,9 @@ public class DemandService extends ServiceImpl<DemandMapper, DemandPo> implement
 		Set<Integer> demandIds = demandPos.parallelStream()
 				.map(DemandPo::getId).collect(Collectors.toSet());
 		QueryWrapper<DemandDetailPo> wrapper = new QueryWrapper();
-		wrapper.lambda().eq(DemandDetailPo::getLogicState, "Y").in(DemandDetailPo::getDemandId, demandIds).orderByAsc(DemandDetailPo::getDate);
+		wrapper.lambda().eq(DemandDetailPo::getLogicState, "Y")
+				.in(DemandDetailPo::getDemandId, demandIds)
+				.orderByAsc(DemandDetailPo::getDate);
 		List<DemandDetailPo> demandDetailPos = demandDetailMapper.selectList(wrapper);
 		Map<Integer, List<DemandDetailPo>> demandDetailGroupMap = demandDetailPos.stream()
 				.collect(Collectors.groupingBy(DemandDetailPo::getDemandId));
@@ -120,6 +122,8 @@ public class DemandService extends ServiceImpl<DemandMapper, DemandPo> implement
 		Map<String, List<DemandPo>> demandGroupMap = demandPos.stream()
 				.collect(Collectors.groupingBy(DemandPo::getUserCode));
 		// 查询人员
+		String user = SecurityUtil.getUserCode();
+		dto.setUserCode(user);
 		List<UserDetailPo> userDetailPos = userDetailMapper.selectUserList(dto);
 		List<Map<String, Object>> list = new ArrayList<>();
 		userDetailPos.forEach(items -> {

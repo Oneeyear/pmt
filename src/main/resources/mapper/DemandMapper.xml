@@ -5,35 +5,35 @@
     <update id="removeDemands">
         update demand
         set modify_time = now(),
-        modify_user = #{modifyUser},
-        logic_state = 'N'
-        where id in
+            modify_user = #{modifyUser},
+            logic_state = 'N'
+                where id in
         <foreach item='id' index='index' collection='ids' open='(' separator=',' close=')'>
             #{id}
         </foreach>
     </update>
 
     <select id="selectDemandList" resultType="com.yl.pmt.pojo.po.DemandPo">
-        select id as id,
-        user_code as userCode,
-        demand as demand,
-        demand_type as demandType,
-        plan_start_time as planStartTime,
-        plan_end_time as planEndTime,
-        plan_test_time as planTestTime,
-        plan_online_time as planOnlineTime,
-        start_time as startTime,
-        end_time as endTime,
-        test_time as testTime,
-        remark as remark,
-        status as status,
-        logic_state as logicState,
-        create_user as createUser,
-        create_time as createTime,
-        modify_user as modifyUser,
-        modify_time as modifyTime
+        select id               as id,
+               user_code        as userCode,
+               demand           as demand,
+               demand_type      as demandType,
+               plan_start_time  as planStartTime,
+               plan_end_time    as planEndTime,
+               plan_test_time   as planTestTime,
+               plan_online_time as planOnlineTime,
+               start_time       as startTime,
+               end_time         as endTime,
+               test_time        as testTime,
+               remark           as remark,
+               status           as status,
+               logic_state      as logicState,
+               create_user      as createUser,
+               create_time      as createTime,
+               modify_user      as modifyUser,
+               modify_time      as modifyTime
         from demand
-        where logic_state = 'Y'
+                where logic_state = 'Y'
         <if test="userCode != null and userCode != ''">
             and user_code = #{userCode}
         </if>
@@ -52,12 +52,13 @@
         <if test="status != null and status != ''">
             and status = #{status}
         </if>
+        order by create_time desc
     </select>
 
     <delete id="updateDemandStatus">
         update demand
         set status = #{status}
-        where id in
+                where id in
         <foreach item='id' index='index' collection='ids' open='(' separator=',' close=')'>
             #{id}
         </foreach>
@@ -66,8 +67,8 @@
     <select id="countDemandByUserCode" resultType="java.lang.Long">
         select count(*)
         from demand where logic_state = 'Y'
-        and status != 'finish'
-        and user_code in
+                      and status != 'finish'
+                      and user_code in
         <foreach item='userCode' index='index' collection='userCodes' open='(' separator=',' close=')'>
             #{userCode}
         </foreach>

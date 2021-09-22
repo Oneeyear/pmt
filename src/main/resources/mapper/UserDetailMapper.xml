@@ -5,32 +5,29 @@
     <update id="removeUsers">
         update sys_user_detail
         set modify_time = now(),
-        logic_state = 'N'
-        where id in
+            logic_state = 'N'
+                where id in
         <foreach item='id' index='index' collection='ids' open='(' separator=',' close=')'>
             #{id}
         </foreach>
     </update>
 
     <select id="selectUserList" resultType="com.yl.pmt.pojo.po.UserDetailPo">
-        select id as id,
-        name as name,
-        dept as dept,
-        area as area,
-        user_code as userCode,
-        remark as remark,
-        logic_state as logicState,
-        create_user as createUser,
-        create_time as createTime,
-        modify_user as modifyUser,
-        modify_time as modifyTime
+        select id          as id,
+               name        as name,
+               dept        as dept,
+               area        as area,
+               user_code   as userCode,
+               remark      as remark,
+               logic_state as logicState,
+               create_user as createUser,
+               create_time as createTime,
+               modify_user as modifyUser,
+               modify_time as modifyTime
         from sys_user_detail
-        where logic_state = 'Y'
+                where logic_state = 'Y'
         <if test="name != null and name != ''">
             and name like CONCAT('%', #{name}, '%')
-        </if>
-        <if test="userCode != null and userCode != ''">
-            and user_code = #{userCode}
         </if>
         <if test="dept != null and dept != ''">
             and dept = #{dept}
@@ -38,6 +35,8 @@
         <if test="area != null and area != ''">
             and area = #{area}
         </if>
+        ORDER BY CASE when user_code = #{userCode} THEN 0 ELSE 1 END,
+                 id DESC
     </select>
 
     <select id="listUserCodes" resultType="java.lang.String">

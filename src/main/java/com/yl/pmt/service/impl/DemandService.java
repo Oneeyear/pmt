@@ -192,7 +192,7 @@ public class DemandService extends ServiceImpl<DemandMapper, DemandPo> implement
 			if (isNormal) {
 				normal.add(po.getId());
 			}
-			if (endTime != null) {
+			if (!isDelay&& !isNormal && endTime != null) {
 				finish.add(po.getId());
 			}
 		});

@@ -44,11 +44,6 @@ public class DemandVo extends BaseVo {
 	private Date planEndTime;
 
 	/**
-	 * 计划提测时间
-	 */
-	private Date planTestTime;
-
-	/**
 	 * 计划上线时间
 	 */
 	private Date planOnlineTime;
@@ -64,9 +59,9 @@ public class DemandVo extends BaseVo {
 	private Date endTime;
 
 	/**
-	 * 实际提测时间
+	 * 实际上线时间
 	 */
-	private Date testTime;
+	private Date onlineTime;
 
 	/**
 	 * 备注

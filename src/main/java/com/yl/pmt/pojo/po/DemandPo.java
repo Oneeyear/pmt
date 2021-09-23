@@ -55,12 +55,6 @@ public class DemandPo extends BasePo {
 	private Date planEndTime;
 
 	/**
-	 * 计划提测时间
-	 */
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-	private Date planTestTime;
-
-	/**
 	 * 计划上线时间
 	 */
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
@@ -82,7 +76,7 @@ public class DemandPo extends BasePo {
 	 * 实际提测时间
 	 */
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-	private Date testTime;
+	private Date onlineTime;
 
 	/**
 	 * 备注

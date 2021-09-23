@@ -20,11 +20,9 @@
                demand_type      as demandType,
                plan_start_time  as planStartTime,
                plan_end_time    as planEndTime,
-               plan_test_time   as planTestTime,
                plan_online_time as planOnlineTime,
                start_time       as startTime,
                end_time         as endTime,
-               test_time        as testTime,
                remark           as remark,
                status           as status,
                logic_state      as logicState,
@@ -43,11 +41,10 @@
         <if test="demandType != null and demandType != ''">
             and demand_type = #{demandType}
         </if>
-        <if test="startTime != null and startTime != ''">
-            and start_time <![CDATA[>=]]> #{startTime}
-        </if>
-        <if test="endTime != null and endTime != ''">
-            and start_time <![CDATA[<=]]> #{endTime}
+        <if test="startTime != null and endTime != null ">
+            and (#{startTime} between start_time and end_time or  #{endTime} between start_time and end_time)
+            or (#{startTime} <![CDATA[<=]]> start_time <![CDATA[<=]]> end_time <![CDATA[<=]]> #{endTime})
+            or (start_time <![CDATA[<=]]> #{startTime} <![CDATA[<=]]> #{endTime} <![CDATA[<=]]> end_time)
         </if>
         <if test="status != null and status != ''">
             and status = #{status}

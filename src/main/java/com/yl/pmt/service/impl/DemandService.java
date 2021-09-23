@@ -101,7 +101,7 @@ public class DemandService extends ServiceImpl<DemandMapper, DemandPo> implement
 	@Override
 	public List<Map<String, Object>> listDemands(DemandQueryDto dto) {
 		// 更新需求状态
-		changeDemandStatus();
+		// changeDemandStatus();
 		// 当传入值为空时查询全部
 		dto = Optional.ofNullable(dto).orElseGet(() -> new DemandQueryDto());
 		List<DemandPo> demandPos = demandMapper.selectDemandList(dto);

@@ -63,14 +63,6 @@ public class DemandDto extends BaseDto {
 	private Date planEndTime;
 
 	/**
-	 * 计划提测时间
-	 */
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-	@ApiModelProperty(value = "计划提测时间")
-	private Date planTestTime;
-
-	/**
 	 * 计划上线时间
 	 */
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
@@ -87,20 +79,20 @@ public class DemandDto extends BaseDto {
 	private Date startTime;
 
 	/**
-	 * 实际结束时间
-	 */
-	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-	@ApiModelProperty(value = "实际结束时间")
-	private Date endTime;
-
-	/**
 	 * 实际提测时间
 	 */
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
 	@ApiModelProperty(value = "实际提测时间")
 	private Date testTime;
+
+	/**
+	 * 实际上线时间
+	 */
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+	@ApiModelProperty(value = "实际上线时间")
+	private Date onlineTime;
 
 	/**
 	 * 备注

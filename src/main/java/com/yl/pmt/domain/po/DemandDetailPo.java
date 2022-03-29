@@ -1,21 +1,24 @@
-package com.yl.pmt.pojo.po;
+package com.yl.pmt.domain.po;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.util.Date;
+
 /**
- * 用户实体类
+ * 需求每日完成详情
  *
  * @author pch
- * @date 2021/9/16 3:03 下午
+ * @date 2021/9/22 11:41 上午
  */
 @Data
 @Accessors(chain = true)
-@TableName(value = "sys_user_detail")
-public class UserDetailPo extends BasePo {
+@TableName(value = "demand_detail")
+public class DemandDetailPo extends BasePo {
 
 	/**
 	 * 主键
@@ -24,28 +27,23 @@ public class UserDetailPo extends BasePo {
 	private Integer id;
 
 	/**
-	 * 用户名
+	 * 需求ID
 	 */
-	private String name;
+	private Integer demandId;
 
 	/**
-	 * 部门（基础资料/服务质量...）
+	 * 操作日期
 	 */
-	private String dept;
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private Date date;
 
 	/**
-	 * 地区（上海/深圳）
+	 * 完成状态
 	 */
-	private String area;
+	private String status;
 
 	/**
 	 * 备注
 	 */
 	private String remark;
-
-	/**
-	 * 用户唯一标识
-	 */
-	private String userCode;
-
 }

@@ -4,47 +4,47 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e332fb8-5143-4e2b-9f76-949ef6a94087" name="Changes" comment="添加每日状态">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/mapper/DemandDetailMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/pojo/dto/DemandDetailDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/pojo/po/DemandDetailPo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/pojo/vo/DemandDetailVo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/service/IDemandDetailService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/service/impl/DemandDetailService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mapper/DemandDetailMapper.xml" afterDir="false" />
+    <list default="true" id="9e332fb8-5143-4e2b-9f76-949ef6a94087" name="Changes" comment="美术成绩查询">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/controller/ScoreController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/domain/dto/ScoreDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/domain/po/ScorePo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/domain/vo/ScoreVo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/mapper/ScoreMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/service/IScoreService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/service/impl/ScoreService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/controller/DemandController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/controller/DemandController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/mapper/DemandDetailMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/mapper/DemandDetailMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/mapper/DemandMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/mapper/DemandMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/mapper/UserDetailMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/mapper/UserDetailMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/pojo/dto/DemandDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/pojo/dto/DemandDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/pojo/dto/DemandQueryDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/pojo/dto/DemandQueryDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/pojo/po/BasePo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/pojo/po/BasePo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/pojo/po/DemandPo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/pojo/po/DemandPo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/JwtAuthenticationTokenFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/JwtAuthenticationTokenFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/UserAuthenticationProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/UserAuthenticationProvider.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/UserPermissionEvaluator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/UserPermissionEvaluator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/config/JwtConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/config/JwtConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/controller/IndexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/controller/IndexController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/handler/UserAuthAccessDeniedHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/handler/UserAuthAccessDeniedHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/handler/UserAuthenticationEntryPointHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/handler/UserAuthenticationEntryPointHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/handler/UserLoginFailureHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/handler/UserLoginFailureHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/handler/UserLogoutSuccessHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/handler/UserLogoutSuccessHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/mapper/MenuMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/mapper/MenuMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/mapper/RoleMenuMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/mapper/RoleMenuMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/mapper/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/pojo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/pojo/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/service/IUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/service/IUserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/service/impl/SelfUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/service/impl/SelfUserDetailsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/util/JWTTokenUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/util/JWTTokenUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/util/ResultUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/util/ResultUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/pojo/dto/BaseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/domain/dto/BaseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/pojo/dto/DemandDetailDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/domain/dto/DemandDetailDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/pojo/dto/DemandDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/domain/dto/DemandDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/pojo/dto/DemandQueryDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/domain/dto/DemandQueryDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/pojo/dto/UserDetailDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/domain/dto/UserDetailDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/pojo/po/BasePo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/domain/po/BasePo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/pojo/po/DemandDetailPo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/domain/po/DemandDetailPo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/pojo/po/DemandPo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/domain/po/DemandPo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/pojo/po/UserDetailPo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/domain/po/UserDetailPo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/pojo/vo/BaseVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/domain/vo/BaseVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/pojo/vo/DemandDetailVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/domain/vo/DemandDetailVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/pojo/vo/DemandVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/domain/vo/DemandVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/pojo/vo/UserDetailVo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/domain/vo/UserDetailVo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/result/BaseResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/controller/BaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/handler/UserLoginSuccessHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/security/handler/UserLoginSuccessHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/service/IDemandDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/service/IDemandDetailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/service/IDemandService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/service/IDemandService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/service/IUserDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/service/IUserDetailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/service/impl/DemandDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/service/impl/DemandDetailService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/service/impl/DemandService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/service/impl/DemandService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/service/impl/UserDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/service/impl/UserDetailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/yl/pmt/util/EntityConvertUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/yl/pmt/util/EntityConvertUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/DemandMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/DemandMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/UserDetailMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserDetailMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +54,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -63,6 +64,11 @@
       <list>
         <option value="pch" />
       </list>
+    </option>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -95,15 +101,17 @@
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="DatabaseDriversLRU" value="mysql" />
-    <property name="MyBatisLogPluginindexNum" value="4330" />
+    <property name="MyBatisLogPluginindexNum" value="4398" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="spring.boot" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -130,7 +138,17 @@
       <option name="presentableId" value="Default" />
       <updated>1631674733718</updated>
       <workItem from="1631674736843" duration="411000" />
-      <workItem from="1632272606885" duration="15201000" />
+      <workItem from="1632272606885" duration="19531000" />
+      <workItem from="1632367447302" duration="3310000" />
+      <workItem from="1632395461852" duration="1062000" />
+      <workItem from="1632715118758" duration="235000" />
+      <workItem from="1634902567706" duration="8274000" />
+      <workItem from="1634975025228" duration="39000" />
+      <workItem from="1634979600778" duration="1262000" />
+      <workItem from="1635255627219" duration="40000" />
+      <workItem from="1648312443509" duration="1546000" />
+      <workItem from="1648379126070" duration="599000" />
+      <workItem from="1648538419159" duration="269000" />
     </task>
     <task id="LOCAL-00001" summary="项目初始化">
       <created>1631674938038</created>
@@ -174,7 +192,56 @@
       <option name="project" value="LOCAL" />
       <updated>1632273239301</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="添加每日状态">
+      <created>1632300910327</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1632300910327</updated>
+    </task>
+    <task id="LOCAL-00008" summary="解决排序问题">
+      <created>1632303187465</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1632303187465</updated>
+    </task>
+    <task id="LOCAL-00009" summary="增加字段">
+      <created>1632375135325</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1632375135326</updated>
+    </task>
+    <task id="LOCAL-00010" summary="优化">
+      <created>1632375282798</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1632375282798</updated>
+    </task>
+    <task id="LOCAL-00011" summary="优化">
+      <created>1632377154771</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1632377154771</updated>
+    </task>
+    <task id="LOCAL-00012" summary="优化">
+      <created>1632397709332</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1632397709332</updated>
+    </task>
+    <task id="LOCAL-00013" summary="美术成绩查询">
+      <created>1634911782589</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1634911782589</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -250,8 +317,12 @@
     <MESSAGE value="项目初始化..." />
     <MESSAGE value="优化登录" />
     <MESSAGE value="优化了一些逻辑" />
+    <MESSAGE value="添加每日状态" />
+    <MESSAGE value="解决排序问题" />
+    <MESSAGE value="增加字段" />
     <MESSAGE value="优化" />
-    <option name="LAST_COMMIT_MESSAGE" value="优化" />
+    <MESSAGE value="美术成绩查询" />
+    <option name="LAST_COMMIT_MESSAGE" value="美术成绩查询" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -1,4 +1,4 @@
-package com.yl.pmt.pojo.po;
+package com.yl.pmt.domain.po;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;

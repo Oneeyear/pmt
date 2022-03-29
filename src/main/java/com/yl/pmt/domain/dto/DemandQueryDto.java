@@ -1,4 +1,4 @@
-package com.yl.pmt.pojo.dto;
+package com.yl.pmt.domain.dto;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;

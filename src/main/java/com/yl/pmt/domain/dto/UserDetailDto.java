@@ -1,8 +1,9 @@
-package com.yl.pmt.pojo.dto;
+package com.yl.pmt.domain.dto;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -13,6 +14,7 @@ import javax.validation.constraints.Size;
  * @author pch
  * @date 2021/9/16 3:03 下午
  */
+@EqualsAndHashCode(callSuper = true)
 @Api(value = "需求实体")
 @Data
 public class UserDetailDto extends BaseDto {

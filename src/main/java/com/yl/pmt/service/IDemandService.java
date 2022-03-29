@@ -1,9 +1,9 @@
 package com.yl.pmt.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.yl.pmt.pojo.dto.DemandDto;
-import com.yl.pmt.pojo.dto.DemandQueryDto;
-import com.yl.pmt.pojo.po.DemandPo;
+import com.yl.pmt.domain.dto.DemandDto;
+import com.yl.pmt.domain.dto.DemandQueryDto;
+import com.yl.pmt.domain.po.DemandPo;
 
 import java.util.List;
 import java.util.Map;

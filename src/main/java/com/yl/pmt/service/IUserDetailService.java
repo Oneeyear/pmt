@@ -1,9 +1,9 @@
 package com.yl.pmt.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.yl.pmt.pojo.dto.UserDetailDto;
-import com.yl.pmt.pojo.po.UserDetailPo;
-import com.yl.pmt.pojo.vo.UserDetailVo;
+import com.yl.pmt.domain.dto.UserDetailDto;
+import com.yl.pmt.domain.po.UserDetailPo;
+import com.yl.pmt.domain.vo.UserDetailVo;
 
 import java.util.List;
 

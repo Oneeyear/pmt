@@ -1,8 +1,8 @@
 package com.yl.pmt.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.yl.pmt.pojo.dto.DemandQueryDto;
-import com.yl.pmt.pojo.po.UserDetailPo;
+import com.yl.pmt.domain.dto.DemandQueryDto;
+import com.yl.pmt.domain.po.UserDetailPo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;

@@ -1,9 +1,8 @@
 package com.yl.pmt.controller;
 
-import com.yl.pmt.pojo.dto.DemandDetailDto;
-import com.yl.pmt.pojo.dto.DemandDto;
-import com.yl.pmt.pojo.dto.DemandQueryDto;
-import com.yl.pmt.result.BaseResponse;
+import com.yl.pmt.domain.dto.DemandDetailDto;
+import com.yl.pmt.domain.dto.DemandDto;
+import com.yl.pmt.domain.dto.DemandQueryDto;
 import com.yl.pmt.result.ResponseData;
 import com.yl.pmt.service.IDemandDetailService;
 import com.yl.pmt.service.IDemandService;
@@ -28,7 +27,7 @@ import java.util.Map;
 @Api(tags = "需求列表")
 @RestController
 @RequestMapping("/demand")
-public class DemandController extends BaseResponse {
+public class DemandController extends BaseController {
 
 	@Autowired
 	IDemandService demandService;

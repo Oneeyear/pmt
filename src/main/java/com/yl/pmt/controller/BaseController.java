@@ -1,15 +1,16 @@
-package com.yl.pmt.result;
+package com.yl.pmt.controller;
 
 import com.github.pagehelper.PageInfo;
+import com.yl.pmt.result.ResponseData;
 
 /**
- * BaseResponse:返回的工具类,主要是方便返回的写法
+ * BaseController:返回的工具类,主要是方便返回的写法
  * 单纯的返回工具类,直接放在这个包
  *
  * @author pch
  * @date 2021/5/26 7:02 下午
  */
-public class BaseResponse {
+public class BaseController {
 	/**
 	 * 返回成功描述
 	 *

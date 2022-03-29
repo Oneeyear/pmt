@@ -1,7 +1,7 @@
 //package com.yl.pmt.security.controller;
 //
-//import com.yl.pmt.security.pojo.SelfUser;
-//import com.yl.pmt.security.pojo.Menu;
+//import com.yl.pmt.security.domain.SelfUser;
+//import com.yl.pmt.security.domain.Menu;
 //import com.yl.pmt.security.util.ResultUtil;
 //import com.yl.pmt.security.service.IMenuService;
 //import org.springframework.beans.factory.annotation.Autowired;

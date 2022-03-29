@@ -1,4 +1,4 @@
-package com.yl.pmt.pojo.po;
+package com.yl.pmt.domain.po;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;

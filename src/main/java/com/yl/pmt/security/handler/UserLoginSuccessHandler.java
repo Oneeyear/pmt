@@ -1,6 +1,6 @@
 package com.yl.pmt.security.handler;
 
-import com.yl.pmt.result.BaseResponse;
+import com.yl.pmt.controller.BaseController;
 import com.yl.pmt.security.config.JwtConfig;
 import com.yl.pmt.security.pojo.SelfUser;
 import com.yl.pmt.security.util.JWTTokenUtil;
@@ -38,6 +38,6 @@ public class UserLoginSuccessHandler implements AuthenticationSuccessHandler {
 		Map<String, String> map = new HashMap<>();
 		map.put("token", token);
 		// 封装返回参数
-		ResultUtil.responseJson(response, BaseResponse.success("登录成功！", map));
+		ResultUtil.responseJson(response, BaseController.success("登录成功！", map));
 	}
 }

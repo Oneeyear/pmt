@@ -12,7 +12,7 @@
         </foreach>
     </update>
 
-    <select id="selectUserList" resultType="com.yl.pmt.pojo.po.UserDetailPo">
+    <select id="selectUserList" resultType="com.yl.pmt.domain.po.UserDetailPo">
         select id          as id,
                name        as name,
                dept        as dept,

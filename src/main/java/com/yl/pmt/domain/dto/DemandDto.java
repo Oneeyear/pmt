@@ -1,9 +1,10 @@
-package com.yl.pmt.pojo.dto;
+package com.yl.pmt.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotEmpty;
@@ -15,6 +16,7 @@ import java.util.Date;
  * @author pch
  * @date 2021/9/15 7:04 下午
  */
+@EqualsAndHashCode(callSuper = true)
 @Api(value = "需求实体")
 @Data
 public class DemandDto extends BaseDto {

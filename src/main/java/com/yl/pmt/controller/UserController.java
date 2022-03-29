@@ -1,9 +1,8 @@
 package com.yl.pmt.controller;
 
-import com.yl.pmt.pojo.dto.UserDetailDto;
-import com.yl.pmt.pojo.po.UserDetailPo;
-import com.yl.pmt.pojo.vo.UserDetailVo;
-import com.yl.pmt.result.BaseResponse;
+import com.yl.pmt.domain.dto.UserDetailDto;
+import com.yl.pmt.domain.po.UserDetailPo;
+import com.yl.pmt.domain.vo.UserDetailVo;
 import com.yl.pmt.result.ResponseData;
 import com.yl.pmt.service.IUserDetailService;
 import io.swagger.annotations.Api;
@@ -26,7 +25,7 @@ import java.util.List;
 @Api(tags = "用户信息")
 @RestController
 @RequestMapping("/user")
-public class UserController extends BaseResponse {
+public class UserController extends BaseController {
 
 	@Autowired
 	IUserDetailService userService;

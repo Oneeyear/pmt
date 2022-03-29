@@ -92,7 +92,7 @@ public final class EntityConvertUtil {
 	}
 
 	public static void main(String[] args) {
-		String sourceClassName = "com.yl.pojo.dto.ClothesPostPo";
+		String sourceClassName = "com.yl.domain.dto.ClothesPostPo";
 		String sourceType = "Po";
 		String targetType = "Vo";
 		String targetClassName = getTargetClassName(sourceClassName, sourceType, targetType);

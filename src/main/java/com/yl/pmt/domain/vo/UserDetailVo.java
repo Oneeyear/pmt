@@ -1,4 +1,4 @@
-package com.yl.pmt.pojo.vo;
+package com.yl.pmt.domain.vo;
 
 import lombok.Data;
 

@@ -1,8 +1,8 @@
 package com.yl.pmt.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.yl.pmt.pojo.dto.DemandDetailDto;
-import com.yl.pmt.pojo.po.DemandDetailPo;
+import com.yl.pmt.domain.dto.DemandDetailDto;
+import com.yl.pmt.domain.po.DemandDetailPo;
 
 /**
  * 需求每日状态
